@@ -1,2 +1,9 @@
-<app-landing-page></app-landing-page>
+<p>landing page</p>
+<button routerLink="/signupform">Sign Up Customer</button>
+
+
+<ul>
+  <li *ngFor="let user of users">{{ user.name }}</li>
+</ul>
+<router-outlet></router-outlet>
 
