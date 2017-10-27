@@ -1,16 +1,24 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema,
-ObjectId = Schema.ObjectId;
 
-var CustomerSchema = new Schema({
+
+
+CustomerSchema = new Schema({
 fName     : String,
 lName     : String,
-phNumber  : ObjectId,
-email     : String
+phNumber  : String,
+email     : String,
+make      : String,
+model      : String,
+vin      : String,
+year      : String,
+engine      : String,
+tire      : String,
+history      : String,
 
 });
 
-var Customer = mongoose.model("Customer", CustomerSchema);
+ mongoose.model("Customer", CustomerSchema);
 
 // Export the model
-module.exports = Customer;
+module.exports =  mongoose.model("Customer", CustomerSchema);
