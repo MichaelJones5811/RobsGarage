@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import 'rxjs/add/operator/toPromise';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
@@ -42,4 +41,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 
 
+
 export class AppModule { }
+
