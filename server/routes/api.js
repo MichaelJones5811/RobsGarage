@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
+
 const mongoose = require("mongoose");
 const customer = require("../../models/customerModel.js");
 // Set mongoose to leverage built in JavaScript ES6 Promises
@@ -22,6 +23,7 @@ mongoose.connect(db, function(err) {
 });
 
 
+
 // Error handling
 const sendError = (err, res) => {
     response.status = 501;
@@ -40,6 +42,7 @@ let response = {
 
 
 // create Customers
+
      router.post('/addCustomer', function(req, res) {
         console.log('Posting an New Customer');
         console.log(req.body);
@@ -56,6 +59,7 @@ let response = {
         newCustomer.tire = req.body.tire;
         newCustomer.history = req.body.history;
         newCustomer.save(function(err, customer) {
+
             if(err) {
                 console.log('Error inserting the new customer');
             } else {

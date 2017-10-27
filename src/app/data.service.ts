@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Customer } from './customer'
 import { Http, Headers, RequestOptions } from '@angular/http';
+
 import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class DataService {
@@ -34,4 +36,5 @@ export class DataService {
     return this._http.post('/api/update/'+id, JSON.stringify(post), options)
       .map(result => this.result = result.json());
   }
+
 }
