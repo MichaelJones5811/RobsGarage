@@ -1,8 +1,50 @@
-<p>landing page</p>
-<button routerLink="/signupform">Sign Up Customer</button>
+<div class="container">
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse sticky-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <a class="navbar-brand" routerLink="/landingpage"><h2>Rob's Garage</h2></a>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/landingpage">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/signupform">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <button class="btn btn-outline-success" type="button" routerLink="/signupform">
+        New Customer
+      </button>
+      </form>
+    </div>
+  </nav>
 
-<ul>
-  <li *ngFor="let user of users">{{ user.name }}</li>
-</ul>
-<router-outlet></router-outlet>
+  <ul>
+    <li *ngFor="let user of users">{{ user.name }}</li>
+  </ul>
+
+  <!-- components (pages) route through this code -->
+  <router-outlet></router-outlet>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+  </footer>
+
+  <!-- <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-bottom">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="row"
+      <p class="text-center">Center aligned text on all viewport sizes.</p>
+    </div>
+  </nav> -->
+</div>

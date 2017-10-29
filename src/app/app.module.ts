@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
-import { RouterModule }   from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,11 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     LandingPageComponent,
     SignUpFormComponent
-    
+
   ],
   imports: [
     BrowserModule,
-    HttpModule ,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
@@ -31,9 +31,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         component: SignUpFormComponent
       },
       {
-      path: '',
-      redirectTo: '/landingpage',
-      pathMatch: 'full'
+        path: '',
+        redirectTo: '/landingpage',
+        pathMatch: 'full'
       }
     ])
   ],
