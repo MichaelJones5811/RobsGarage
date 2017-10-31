@@ -8,11 +8,8 @@ const Customer = require("../../models/customerModel.js");
 mongoose.Promise = Promise;
 // Connect
 
-
-mongoose.connect("mongodb://localhost/Customer",{
-    useMongoClient: true,
-});
- var db = mongoose.connection;
+mongoose.connect("mongodb://localhost/Customer", {useMongoClient: true});
+var db = mongoose.connection;
 
 // Show any mongoose errors
 db.on("error", function(error) {
@@ -26,37 +23,38 @@ db.once("open", function() {
 
 // Error handling
 const sendError = (err, res) => {
-    response.status = 501;
-    response.message = typeof err == 'object' ? err.message : err;
-    res.status(501).json(response);
+  response.status = 501;
+  response.message = typeof err == 'object'
+    ? err.message
+    : err;
+  res.status(501).json(response);
 };
 
 // Response handling
 let response = {
-    status: 200,
-    data: [],
-    message: null
+  status: 200,
+  data: [],
+  message: null
 };
 
 // Get Customers
 
-
 // create Customers
- 
-      router.post('/addCustomer', function(req, res) {
-        console.log('Posting an New Customer');
-        var newCusotmer = new customer();
-        newCusotmer.fName = req.body.fname;
-        newCusotmer.lName = req.body.lName;
-        newCusotmer.phNumber = req.body.phNumber;
-        newCusotmer.email = req.body.email;
-        newCusotmer.save(function(err, customer) {
-            if(err) {
-                console.log('Error inserting the new customer');
-            } else {
-                res.json(customer);
-            }
-        });
-    });
+
+router.post('/addCustomer', function(req, res) {
+  console.log('Posting an New Customer');
+  var newCusotmer = new customer();
+  newCusotmer.fName = req.body.fname;
+  newCusotmer.lName = req.body.lName;
+  newCusotmer.phNumber = req.body.phNumber;
+  newCusotmer.email = req.body.email;
+  newCusotmer.save(function(err, customer) {
+    if (err) {
+      console.log('Error inserting the new customer');
+    } else {
+      res.json(customer);
+    }
+  });
+});
 
 module.exports = router;

@@ -23,16 +23,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     RouterModule.forRoot([
       {
-        path: 'landingpage',
+        path: '',
         component: LandingPageComponent
       },
       {
-        path: 'signupform',
+        path: 'register',
         component: SignUpFormComponent
       },
       {
         path: '',
-        redirectTo: '/landingpage',
+        redirectTo: '',
         pathMatch: 'full'
       }
     ])
