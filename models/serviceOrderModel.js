@@ -16,6 +16,8 @@ cusCarService      : String,
 cusCarServiceTwo      : String,
 cusCarServiceThree      : String,
 cusAttendant: String,
+status: String,
+location: String
 
 });
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../data.service";
 
 @Component({
   selector: 'app-service-dashboard',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiceDashboardComponent implements OnInit {
 
-  constructor() { }
+    orders = [];
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+      this.dataService.getServiceOrders()
+      .subscribe(
+        (order: any[]) => this.orders = order,
+        (error) => console.log(error)
+        );
   }
 
 }

@@ -121,6 +121,21 @@ let response = {
         });
     });
 
+                 // This will get all customers in db
+    router.get("/allserviceorders", function(req, res) {
+      console.log("Got here");
+      ServiceOrder.find().exec(function(error, orders) {
+        // Log any errors
+        if (error) {
+          console.log(error);
+        }
+        // Or send the orders to the browser as a json object
+        else {
+        res.json(orders);
+        }
+      });
+    });
+
 
 
 
