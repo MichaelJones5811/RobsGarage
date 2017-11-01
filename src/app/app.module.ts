@@ -7,13 +7,22 @@ import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServiceOrderComponent } from './service-order/service-order.component';
+import { CustomerComponent } from './customer/customer.component';
+import { SelectCustomerComponent } from './select-customer/select-customer.component';
+import { CustomerService } from './customer.service';
+import { ServiceDashboardComponent } from './service-dashboard/service-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    SignUpFormComponent
-    
+    SignUpFormComponent,
+    ServiceOrderComponent,
+    CustomerComponent,
+    SelectCustomerComponent,
+    ServiceDashboardComponent
+
   ],
   imports: [
     BrowserModule,
@@ -30,13 +39,29 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         component: SignUpFormComponent
       },
       {
+        path: 'findcustomer',
+        component: SelectCustomerComponent
+      },
+      {
+        path: 'customerdashboard',
+        component: CustomerComponent
+      },
+      {
+        path: 'createserviceorder',
+        component: ServiceOrderComponent
+      },
+      {
+        path: 'servicedashboard',
+        component: ServiceDashboardComponent
+      },
+      {
       path: '',
       redirectTo: '/landingpage',
       pathMatch: 'full'
       }
     ])
   ],
-  providers: [DataService],
+  providers: [DataService, CustomerService],
   bootstrap: [AppComponent]
 })
 

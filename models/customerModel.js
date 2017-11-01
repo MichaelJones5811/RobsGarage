@@ -4,7 +4,7 @@ var Schema = mongoose.Schema,
 
 
 CustomerSchema = new Schema({
-fName     : String,
+customer_id     : String,
 lName     : String,
 phNumber  : String,
 email     : String,

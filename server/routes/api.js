@@ -4,6 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 const mongoose = require("mongoose");
 const customer = require("../../models/customerModel.js");
+const ServiceOrder = require("../../models/serviceOrderModel.js");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 
 // Connect
@@ -12,13 +13,13 @@ useMongoClient: true;
 mongoose.Promise = global.Promise;
 //connect and show any mongoose errors
 mongoose.connect(db, function(err) {
-  
+
   if(err) {
       console.log('Error connecting');
   }
   else{
     console.log('Mongoose connection successful.')
-    
+
   }
 });
 
@@ -47,7 +48,7 @@ let response = {
         console.log('Posting an New Customer');
         console.log(req.body);
         var newCustomer = new customer();
-        newCustomer.fName = req.body.fname;
+        newCustomer.fName = req.body.fName;
         newCustomer.lName = req.body.lName;
         newCustomer.phNumber = req.body.phNumber;
         newCustomer.email = req.body.email;
@@ -67,5 +68,60 @@ let response = {
             }
         });
     });
+
+
+        // This will get all customers in db
+    router.get("/all", function(req, res) {
+      console.log("Got here");
+      customer.find().exec(function(error, customers) {
+        // Log any errors
+        if (error) {
+          console.log(error);
+        }
+        // Or send the customers to the browser as a json object
+        else {
+        res.json(customers);
+        }
+      });
+    });
+
+    // Grab a customer by phone number
+    router.get("/all/:id", function(req, res) {
+      console.log("Got here");
+      // Using the phone number passed in the id parameter
+      customer.find({ "phNumber": req.params.id })
+      // ..and populate all of the customer associated with it
+      // now, execute our query
+      .exec(function(error, customers) {
+        // Log any errors
+        if (error) {
+          console.log(error);
+        }
+        // Otherwise, send the customer to the browser as a json object
+        else {
+          console.log("Got Here Also");
+          console.log(customers);
+          res.json(customers);
+
+        }
+      });
+    });
+
+      //Create Service Order
+         router.post('/addserviceorder', function(req, res) {
+        console.log('Posting a New Service Order');
+        console.log(req.body);
+        var newServiceOrder = new ServiceOrder(req.body);
+        newServiceOrder.save(function(err, customer) {
+            if(err) {
+                console.log('Error inserting the new service order');
+            } else {
+                res.json(customer);
+            }
+        });
+    });
+
+
+
 
 module.exports = router;
