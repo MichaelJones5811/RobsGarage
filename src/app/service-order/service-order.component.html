@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Enter Service Order</h1>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <label for="cusFirstName">First Name:</label>
+        <input type="text" id="cusFirstName" class="form-control" ngModel name="cusFirstName" required>
+        <label for="cusLastName">Last Name:</label>
+        <input type="text" id="cusLastName" class="form-control" ngModel name="cusLastName" required>
+        <label for="cusPhoneNumber">Phone Number:</label>
+        <input type="text" id="cusPhoneNumber" class="form-control" ngModel name="cusPhoneNumber" required>
+        <label for="cusEmail">Email:</label>
+        <input type="email" id="cusEmail" class="form-control" ngModel name="cusEmail" required email>
+        <label for="cusCarVin">VIN:</label>
+        <input type="text" id="cusCarVin" class="form-control" ngModel name="cusCarVin" required>
+        <label for="cusCarMake">Make:</label>
+        <input type="text" id="cusCarMake" class="form-control" ngModel name="cusCarMake" required>
+        <label for="cusCarModel">Model:</label>
+        <input type="text" id="cusCarModel" class="form-control" ngModel name="cusCarModel" required>
+        <label for="cusCarYear">Yeal:</label>
+        <input type="text" id="cusCarYear" class="form-control" ngModel name="cusCarYear" required>
+        <label for="cusService">Service:</label>
+        <select type="text" id="cusCarService" class="form-control" [(ngModel)]="cusCarService" name="cusCarService" required>
+          <option value=""></option>
+          <option value="oil">Oil Change</option>
+          <option value="inspection">Inspection</option>
+          <option value="engine">Fix Engine</option>
+        </select>
+        <div *ngIf="cusCarService != ''">
+          <select type="text" id="cusCarServiceTwo" class="form-control" [(ngModel)]="cusCarServiceTwo" name="cusCarServiceTwo">
+            <option value=""></option>
+            <option value="oil">Oil Change</option>
+            <option value="inspection">Inspection</option>
+            <option value="engine">Fix Engine</option>
+          </select>
+        </div>
+        <div *ngIf="cusCarServiceTwo != '' && cusCarService != ''">
+          <select type="text" id="cusCarServiceThree" class="form-control" [(ngModel)]="cusCarServiceThree" name="cusCarServiceThree">
+            <option value=""></option>
+            <option value="oil">Oil Change</option>
+            <option value="inspection">Inspection</option>
+            <option value="engine">Fix Engine</option>
+          </select>
+        </div>
+        <label for="cusAttendant">Assigned To:</label>
+        <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant" required>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit Order</button>
+        <div *ngIf="successMessage != ''">
+          <div class="alert alert-success">{{successMessage}}<div><button type="button" class="btn btn-success" routerLink="/servicedashboard">Current Orders</button></div></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
