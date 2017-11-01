@@ -83,4 +83,14 @@ export class DataService {
       );
   }
 
+  getServiceOrder(id) {
+    return this._http.get("/api/allserviceorders/"+id)
+     .map(
+      (response: Response) => {
+        this.result = response.json();
+        return response.json();
+      }
+      );
+  }
+
 }
