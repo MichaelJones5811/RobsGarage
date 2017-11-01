@@ -31,6 +31,7 @@ export class DataService {
       );
   }
 
+  //when adding with sign up form
   postCustomers(post: Customer){
    console.log(Customer + "service data");
     let headers = new Headers({ 'Content-Type': 'application/json'});
@@ -39,6 +40,18 @@ export class DataService {
     return this._http.post("/api/addCustomer",JSON.stringify(post),options)
     .map(result => this.result = result.json().data);
   }
+
+  //when adding with service order
+  addCustomer(post){
+   console.log(Customer + "service data");
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+
+    return this._http.post("/api/addCustomer",JSON.stringify(post),options)
+    .map(result => this.result = result.json().data);
+  }
+
+
   updateCustomer(post: Customer, id) {
     let headers = new Headers({ 'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
