@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="text-center">Dashboard</h1>
-      <table class="table">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>Customer</th>
@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of orders">
+          <tr *ngFor="let order of orders" (click)="selectOrder(order._id)">
             <td>{{order.cusFirstName}} {{order.cusLastName}}</td>
             <td>{{order.status | uppercase}}</td>
             <td>{{order.cusCarMake}} {{order.cusCarModel}}, {{order.cusCarYear}}</td>

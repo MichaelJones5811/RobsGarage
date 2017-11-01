@@ -12,6 +12,8 @@ import { CustomerComponent } from './customer/customer.component';
 import { SelectCustomerComponent } from './select-customer/select-customer.component';
 import { CustomerService } from './customer.service';
 import { ServiceDashboardComponent } from './service-dashboard/service-dashboard.component';
+import { ServiceOrderService } from './service-order.service';
+import { ViewServiceOrderComponent } from './view-service-order/view-service-order.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { ServiceDashboardComponent } from './service-dashboard/service-dashboard
     ServiceOrderComponent,
     CustomerComponent,
     SelectCustomerComponent,
-    ServiceDashboardComponent
+    ServiceDashboardComponent,
+    ViewServiceOrderComponent
 
   ],
   imports: [
@@ -55,17 +58,20 @@ import { ServiceDashboardComponent } from './service-dashboard/service-dashboard
         component: ServiceDashboardComponent
       },
       {
+        path: 'viewserviceorder',
+        component: ViewServiceOrderComponent
+      },
+      {
       path: '',
       redirectTo: '/landingpage',
       pathMatch: 'full'
       }
     ])
   ],
-  providers: [DataService, CustomerService],
+  providers: [DataService, CustomerService, ServiceOrderService],
   bootstrap: [AppComponent]
 })
 
 
 
 export class AppModule { }
-

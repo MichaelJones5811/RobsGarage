@@ -121,7 +121,7 @@ let response = {
         });
     });
 
-                 // This will get all customers in db
+                 // This will get all service orders in db
     router.get("/allserviceorders", function(req, res) {
       console.log("Got here");
       ServiceOrder.find().exec(function(error, orders) {
@@ -132,6 +132,28 @@ let response = {
         // Or send the orders to the browser as a json object
         else {
         res.json(orders);
+        }
+      });
+    });
+
+    // Grab a customer by id
+    router.get("/allserviceorders/:id", function(req, res) {
+      console.log("Got here");
+      // Using the phone number passed in the id parameter
+      ServiceOrder.find({ "_id": req.params.id })
+      // ..and populate all of the customer associated with it
+      // now, execute our query
+      .exec(function(error, orders) {
+        // Log any errors
+        if (error) {
+          console.log(error);
+        }
+        // Otherwise, send the customer to the browser as a json object
+        else {
+          console.log("Got Here Also");
+          console.log(orders);
+          res.json(orders);
+
         }
       });
     });
