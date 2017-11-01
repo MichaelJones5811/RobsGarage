@@ -1,3 +1,27 @@
-<p>
-  service-dashboard works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Dashboard</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Assigned</th>
+            <th>Services</th>
+            <th>Start</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{order.status}}</td>
+            <td>{{order.location}}</td>
+            <td>{{order.cusAttendant}}</td>
+            <td>{{order.cusCarService}}<div *ngIf="order.cusCarServiceTwo">{{order.cusCarServiceTwo}}</div><div *ngIf="order.cusCarServiceThree">{{order.cusCarServiceThree}}</div></td>
+            <td>Time</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

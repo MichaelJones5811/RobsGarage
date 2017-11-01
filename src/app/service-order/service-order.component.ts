@@ -25,6 +25,9 @@ export class ServiceOrderComponent implements OnInit {
     if (form.value.cusCarServiceThree == "") {
       delete form.value.cusCarServiceThree;
     }
+
+    form.value.status = "Pending";
+    form.value.location = "Lot";
     this.dataService.postServiceOrder(form.value)
     .subscribe(info => {
       console.log(info);

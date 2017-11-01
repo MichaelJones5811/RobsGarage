@@ -48,7 +48,10 @@ export class DataService {
     let options = new RequestOptions({ headers: headers });
 
     return this._http.post("/api/addCustomer",JSON.stringify(post),options)
-    .map(result => this.result = result.json().data);
+    .map(result => {
+      this.result = result.json().data
+      return result.json()
+    });
   }
 
 
@@ -68,6 +71,16 @@ export class DataService {
       this.result = result.json();
       return result.json();
     });
+  }
+
+  getServiceOrders() {
+    return this._http.get("/api/allserviceorders")
+    .map(
+      (response: Response) => {
+        this.result = response.json();
+        return response.json();
+      }
+      );
   }
 
 }
