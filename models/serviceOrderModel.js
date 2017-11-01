@@ -17,8 +17,10 @@ cusCarServiceTwo      : String,
 cusCarServiceThree      : String,
 cusAttendant: String,
 status: String,
-location: String
+location: String,
 
+},
+{timestamps: {createdAt: 'created_at'}
 });
 
  mongoose.model("ServiceOrder", ServiceOrderSchema);
