@@ -25,36 +25,10 @@ export class ServiceDashboardComponent implements OnInit {
   }
 
   selectOrder(value) {
-    this.dataService.getServiceOrder(value)
-    .subscribe(
-      (response) => {
-        if (response.length > 0) {
-          const info = response[0];
-          const id = info._id;
-          const firstName = info.cusFirstName;
-          const lastName = info.cusLastName;
-          const phoneNumber = info.cusPhoneNumber;
-          const email = info.cusEmail;
-          const vin = info.cusCarVin;
-          const make = info.cusCarMake;
-          const model = info.cusCarModel;
-          const year = info.cusCarYear;
-          const serviceOne = info.cusCarService;
-          const serviceTwo = info.cusCarServiceTwo;
-          const serviceThree = info.cusCarServiceThree;
-          const attendant = info.cusAttendant;
-          const status = info.status;
-          const location = info.location;
-
-          this.serviceOrderService.updateCurrentOrder(id, firstName, lastName, phoneNumber, email, vin, make, model, year, serviceOne, serviceTwo, serviceThree, attendant, status, location);
+          this.serviceOrderService.updateCurrentOrder(value);
 
           this.router.navigate(["/viewserviceorder"]);
 
 
         }
-      },
-      (error) => console.log(error)
-    )
   }
-
-}
