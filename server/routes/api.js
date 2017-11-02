@@ -136,7 +136,7 @@ let response = {
       });
     });
 
-    // Grab a customer by id
+    // Grab a service order by id
     router.get("/allserviceorders/:id", function(req, res) {
       console.log("Got here");
       // Using the phone number passed in the id parameter
@@ -158,6 +158,15 @@ let response = {
       });
     });
 
+    router.put("/updateserviceorder/:id", function(req, res) {
+      var info = req.body;
+      console.log("here is the info");
+      console.log(info);
+      ServiceOrder.findByIdAndUpdate(req.params.id, {$set: info}, {new: true}, function(err, order) {
+        if (err) return handleError(err);
+        res.send(order);
+      });
+    });
 
 
 
