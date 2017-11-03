@@ -16,6 +16,10 @@
       <h5>3rd Service: {{orderInfo?.cusCarServiceThree}}</h5>
       <h5>Attendant: {{orderInfo?.cusAttendant}}</h5>
       <h5>Location: {{orderInfo?.location}}</h5>
+      <h5>Notes:</h5>
+      <ul>
+        <li *ngFor="let note of orderNotes">{{note}}</li>
+      </ul>
       <h5>Created: {{orderInfo?.created_at | date:"medium"}}</h5>
       <h5>Last Update: {{orderInfo?.updatedAt | date:"medium"}}</h5>
     </div>
@@ -43,6 +47,11 @@
         <option value="Bay-3">Bay 3</option>
       </select>
       <button type="submit" class="btn btn-primary">Update Order</button>
+      </form>
+      <h4 class='text-center'>Add a Note</h4>
+      <form (ngSubmit)="onNoteSubmit(note);note.reset()" #note="ngForm">
+        <textarea class="form-control" type="text" id="orderNotes" name="notes" ngModel required></textarea>
+        <button [disabled]="!note.valid"  type="submit" class="btn btn-success">Add Note</button>
       </form>
     </div>
   </div>

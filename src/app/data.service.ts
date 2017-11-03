@@ -103,4 +103,15 @@ export class DataService {
   });
 }
 
+addServiceOrderNote(id, post) {
+  let headers = new Headers({ 'Content-Type': 'application/json'});
+  let options = new RequestOptions({ headers: headers });
+
+  return this._http.put("/api/addserviceordernote/"+id,JSON.stringify(post),options)
+  .map(result => {
+    this.result = result.json();
+    return result.json();
+  });
+}
+
 }
