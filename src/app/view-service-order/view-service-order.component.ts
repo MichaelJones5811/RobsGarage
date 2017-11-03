@@ -15,6 +15,8 @@ export class ViewServiceOrderComponent implements OnInit {
 
   orderInfo: any;
 
+  orderNotes = [];
+
   ngOnInit() {
     this.orderId = this.serviceOrderService.currentServiceOrderInfo();
 
@@ -27,7 +29,9 @@ export class ViewServiceOrderComponent implements OnInit {
     .subscribe(
       (response) => {
         this.orderInfo = response[0];
+        this.orderNotes = response[0].notes;
         console.log(this.orderInfo);
+        console.log(this.orderInfo.notes);
     },
       (error) => console.log(error)
     )
@@ -54,6 +58,16 @@ export class ViewServiceOrderComponent implements OnInit {
       }
     )
 
+  }
+
+  onNoteSubmit(form) {
+    console.log(form.value);
+    this.dataService.addServiceOrderNote(this.orderId, form.value)
+    .subscribe(
+      res => {
+        this.getOrderInfo(this.orderId);
+      }
+    )
   }
 
 }

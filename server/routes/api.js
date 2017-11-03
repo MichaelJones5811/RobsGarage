@@ -158,12 +158,25 @@ let response = {
       });
     });
 
+    //Update service order info
     router.put("/updateserviceorder/:id", function(req, res) {
       var info = req.body;
       console.log("here is the info");
       console.log(info);
       ServiceOrder.findByIdAndUpdate(req.params.id, {$set: info}, {new: true}, function(err, order) {
         if (err) return handleError(err);
+        res.send(order);
+      });
+    });
+
+    //Add Note to service order
+    router.put("/addserviceordernote/:id", function(req, res) {
+      var info = req.body;
+      console.log("here is the info");
+      console.log(info);
+      ServiceOrder.findByIdAndUpdate(req.params.id, {$push: info}, function(err, order) {
+        if (err) return handleError(err);
+        console.log("sending back order");
         res.send(order);
       });
     });

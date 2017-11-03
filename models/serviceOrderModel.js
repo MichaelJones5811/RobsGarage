@@ -18,6 +18,7 @@ cusCarServiceThree      : String,
 cusAttendant: String,
 status: String,
 location: String,
+notes: Array
 
 },
 {timestamps: {createdAt: 'created_at'}
