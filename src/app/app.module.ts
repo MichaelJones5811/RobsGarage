@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
-import { RouterModule }   from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,12 +29,12 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
   ],
   imports: [
     BrowserModule,
-    HttpModule ,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       {
-        path: 'landingpage',
+        path: '',
         component: LandingPageComponent
       },
       {
@@ -62,9 +62,9 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
         component: ViewServiceOrderComponent
       },
       {
-      path: '',
-      redirectTo: '/landingpage',
-      pathMatch: 'full'
+        path: '',
+        redirectTo: '',
+        pathMatch: 'full'
       }
     ])
   ],

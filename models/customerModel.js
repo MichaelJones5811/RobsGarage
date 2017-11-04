@@ -1,25 +1,22 @@
 const mongoose = require("mongoose");
 var Schema = mongoose.Schema,
 
+  CustomerSchema = new Schema({
+    customer_id: String,
+    fName: String,
+    lName: String,
+    phNumber: String,
+    email: String,
+    make: String,
+    model: String,
+    vin: String,
+    year: String,
+    engine: String,
+    tire: String,
+    history: String
+  });
 
-
-CustomerSchema = new Schema({
-customer_id     : String,
-fName: String,
-lName     : String,
-phNumber  : String,
-email     : String,
-make      : String,
-model      : String,
-vin      : String,
-year      : String,
-engine      : String,
-tire      : String,
-history      : String,
-
-});
-
- mongoose.model("Customer", CustomerSchema);
+mongoose.model("Customer", CustomerSchema);
 
 // Export the model
-module.exports =  mongoose.model("Customer", CustomerSchema);
+module.exports = mongoose.model("Customer", CustomerSchema);
