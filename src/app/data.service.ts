@@ -114,4 +114,10 @@ export class DataService {
       });
   }
 
+  signUpUser(post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post("/auth/signup", JSON.stringify(post), options);
+  }
+
 }

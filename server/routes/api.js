@@ -1,38 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const MongoClient = require('mongodb').MongoClient;
-const mongoose = require("mongoose");
 const customer = require("../../models/customerModel.js");
 const ServiceOrder = require("../../models/serviceOrderModel.js");
+const passport = require("passport");
+
 // Set mongoose to leverage built in JavaScript ES6 Promises
 
-// Connect
-const db = "mongodb://localhost/Customer";
-useMongoClient: true;
-mongoose.Promise = global.Promise;
-//connect and show any mongoose errors
-mongoose.connect(db, function(err) {
-  if(err) {
-      console.log('Error connecting');
-  }
-  else{
-    console.log('Mongoose connection successful.')
-  }
-});
 
-// Error handling
-const sendError = (err, res) => {
-    response.status = 501;
-    response.message = typeof err == 'object' ? err.message : err;
-    res.status(501).json(response);
-};
-
-// Response handling
-let response = {
-    status: 200,
-    data: [],
-    message: null
-};
 
 // Get Customers
 
@@ -174,5 +148,6 @@ router.put("/addserviceordernote/:id", function(req, res) {
     res.send(order);
   });
 });
+
 
 module.exports = router;
