@@ -14,6 +14,7 @@ import { CustomerService } from './customer.service';
 import { ServiceDashboardComponent } from './service-dashboard/service-dashboard.component';
 import { ServiceOrderService } from './service-order.service';
 import { ViewServiceOrderComponent } from './view-service-order/view-service-order.component';
+import { UserSignupComponent } from './user-signup/user-signup.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
     CustomerComponent,
     SelectCustomerComponent,
     ServiceDashboardComponent,
-    ViewServiceOrderComponent
+    ViewServiceOrderComponent,
+    UserSignupComponent
 
   ],
   imports: [
@@ -60,6 +62,10 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
       {
         path: 'viewserviceorder',
         component: ViewServiceOrderComponent
+      },
+      {
+        path: 'usersignup',
+        component: UserSignupComponent
       },
       {
         path: '',
