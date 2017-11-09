@@ -120,4 +120,26 @@ export class DataService {
     return this._http.post("/auth/signup", JSON.stringify(post), options);
   }
 
+  logInUser(post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post("/auth/login", JSON.stringify(post), options);
+  }
+
+  logOutUser() {
+    return this._http.get("/auth/logout");
+  }
+
+  getUserInfo() {
+    return this._http.get("/auth/userinfo")
+      .map(
+      (response: Response) => {
+        this.result = response.json();
+        return response.json();
+      }
+      );
+  }
+
+
+
 }
