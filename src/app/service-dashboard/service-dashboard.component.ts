@@ -31,4 +31,25 @@ export class ServiceDashboardComponent implements OnInit {
 
 
         }
+
+  logOut() {
+    this.dataService.logOutUser()
+    .subscribe(info => {
+      console.log(info.url);
+      let urlPath = info.url;
+      let urlPathArray = urlPath.split('/');
+      let lastSegment = urlPathArray[urlPathArray.length - 1];
+      console.log(lastSegment);
+
+      this.router.navigate([lastSegment]);
+    });
+  }
+
+  loggedInInfo() {
+    this.dataService.getUserInfo()
+    .subscribe(
+      (req: any[]) => console.log(req),
+      (error) => console.log(error)
+      );
+  }
   }

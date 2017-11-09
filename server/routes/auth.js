@@ -10,4 +10,25 @@ const passport = require("passport");
         failureRedirect : '/usersignup', // redirect back to the signup page if there is an error
     }));
 
+    // process the login form
+    router.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/servicedashboard', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
+
+    }));
+
+    //log out customer
+    router.get("/logout", function(req, res) {
+        req.logout();
+        req.session.destroy(function(err) {
+            res.redirect('/');
+
+        });
+    });
+
+    //Get logged in user info
+    router.get("/userinfo", function(req, res) {
+        res.json(req.user);
+      });
+
 module.exports = router;
