@@ -1,3 +1,4 @@
+import { AddServiceService } from './add-service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -14,7 +15,11 @@ import { CustomerService } from './customer.service';
 import { ServiceDashboardComponent } from './service-dashboard/service-dashboard.component';
 import { ServiceOrderService } from './service-order.service';
 import { ViewServiceOrderComponent } from './view-service-order/view-service-order.component';
+
+import { AddServiceComponent } from './add-service/add-service.component';
+
 import { UserSignupComponent } from './user-signup/user-signup.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
     SelectCustomerComponent,
     ServiceDashboardComponent,
     ViewServiceOrderComponent,
+
+    AddServiceComponent,
+
+
     UserSignupComponent
+
 
   ],
   imports: [
@@ -64,17 +74,31 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
         component: ViewServiceOrderComponent
       },
       {
-        path: 'usersignup',
+
+        path: 'addservice',
+        component: AddServiceComponent
+      },
+      {
+      path: 'usersignup',
         component: UserSignupComponent
       },
+      
+      {
+      path: '',
+      redirectTo: '/landingpage',
+      pathMatch: 'full'
+      },
+        
       {
         path: '',
         redirectTo: '',
         pathMatch: 'full'
+
       }
+     
     ])
   ],
-  providers: [DataService, CustomerService, ServiceOrderService],
+  providers: [DataService, CustomerService, ServiceOrderService,AddServiceService],
   bootstrap: [AppComponent]
 })
 

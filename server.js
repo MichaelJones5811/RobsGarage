@@ -40,7 +40,11 @@ let response = {
 
 // API file for interacting with MongoDB
 const api = require('./server/routes/api');
+
+const serviceApi = require('./server/routes/serviceApi');
+
 const auth = require("./server/routes/auth");
+
 
 // Parsers
 app.use(bodyParser.json());
@@ -57,8 +61,12 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // API location
 app.use('/api', api);
+
+app.use('/serviceapi', serviceApi);
+
 app.use("/auth", auth);
 require('./server/config/passport.js')(passport);
+
 
 //app.use()
 

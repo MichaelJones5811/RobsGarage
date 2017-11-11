@@ -16,6 +16,11 @@ var Schema = mongoose.Schema,
     history: String
   });
 
+
+
+    
+
+
 mongoose.model("Customer", CustomerSchema);
 
 // Export the model

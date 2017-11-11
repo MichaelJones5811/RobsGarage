@@ -24,6 +24,7 @@ var Schema = mongoose.Schema,
     }
   });
 
+
 mongoose.model("ServiceOrder", ServiceOrderSchema);
 
 // Export the model
