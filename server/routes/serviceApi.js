@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const MongoClient = require('mongodb').MongoClient;
-const Service = require("../../models/serviceModel.js");
-const mongoose = require("mongoose");
+
+const service = require("../../models/serviceModel.js");
+
 
 router.post('/addservice', function(req, res) {
     console.log('Posting an New Service');
@@ -19,5 +19,6 @@ router.post('/addservice', function(req, res) {
         }
     });
 });
+
 
 module.exports = router;

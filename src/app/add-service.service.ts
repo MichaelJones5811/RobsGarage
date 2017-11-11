@@ -12,7 +12,7 @@ postService(post){
    let headers = new Headers({ 'Content-Type': 'application/json'});
    let options = new RequestOptions({ headers: headers });
 
-   return this._http.post("/api/addservice",JSON.stringify(post),options)
+   return this._http.post("/serviceapi/addservice",JSON.stringify(post),options)
 
    .map(result => {
     
