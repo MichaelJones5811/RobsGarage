@@ -3,7 +3,7 @@ const router = express.Router();
 const customer = require("../../models/customerModel.js");
 const ServiceOrder = require("../../models/serviceOrderModel.js");
 
-const service = require("../../models/serviceModel.js");
+
 
 const passport = require("passport");
 
@@ -244,21 +244,7 @@ router.get("/allserviceorders", function(req, res) {
         res.send(order);
       });
     });
-    router.post('/addservice', function(req, res) {
-      console.log('Posting an New Service');
-      console.log(req.body);
-      var newService = new service(req.body);
-     
-      
-      newService.save(function(err, service) {
-  
-          if(err) {
-              console.log('Error inserting the new service');
-          } else {
-              res.json(service);
-          }
-      });
-  });
+    
 
 // Grab a service order by id
 router.get("/allserviceorders/:id", function(req, res) {

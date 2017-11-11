@@ -85,7 +85,7 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
       
       {
       path: '',
-      redirectTo: '/landingpage',
+      redirectTo: 'landingpage',
       pathMatch: 'full'
       },
         
