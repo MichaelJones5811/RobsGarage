@@ -8,13 +8,13 @@ import "rxjs/Rx";
 @Injectable()
 export class DataService {
 
-  result:any;
+  result: any;
 
   constructor(private _http: Http) { }
 
   getCustomers() {
     return this._http.get("/api/all")
-    .map(
+      .map(
       (response: Response) => {
         this.result = response.json();
         return response.json();
@@ -22,8 +22,8 @@ export class DataService {
       );
   }
   getCustomer(id) {
-    return this._http.get("/api/all/"+id)
-     .map(
+    return this._http.get("/api/all/" + id)
+      .map(
       (response: Response) => {
         this.result = response.json();
         return response.json();
@@ -32,50 +32,50 @@ export class DataService {
   }
 
   //when adding with sign up form
-  postCustomers(post: Customer){
-   console.log(Customer + "service data");
-    let headers = new Headers({ 'Content-Type': 'application/json'});
+  postCustomers(post: Customer) {
+    console.log(Customer + "service data");
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this._http.post("/api/addCustomer",JSON.stringify(post),options)
-    .map(result => this.result = result.json().data);
+    return this._http.post("/api/addCustomer", JSON.stringify(post), options)
+      .map(result => this.result = result.json().data);
   }
 
   //when adding with service order
-  addCustomer(post){
-   console.log(Customer + "service data");
-    let headers = new Headers({ 'Content-Type': 'application/json'});
+  addCustomer(post) {
+    console.log(Customer + "service data");
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this._http.post("/api/addCustomer",JSON.stringify(post),options)
-    .map(result => {
-      this.result = result.json().data
-      return result.json()
-    });
+    return this._http.post("/api/addCustomer", JSON.stringify(post), options)
+      .map(result => {
+        this.result = result.json().data
+        return result.json()
+      });
   }
 
 
   updateCustomer(post: Customer, id) {
-    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this._http.post('/api/update/'+id, JSON.stringify(post), options)
+    return this._http.post('/api/update/' + id, JSON.stringify(post), options)
       .map(result => this.result = result.json());
   }
 
-    postServiceOrder(post){
-    let headers = new Headers({ 'Content-Type': 'application/json'});
+  postServiceOrder(post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this._http.post("/api/addserviceorder",JSON.stringify(post),options)
-    .map(result => {
-      this.result = result.json();
-      return result.json();
-    });
+    return this._http.post("/api/addserviceorder", JSON.stringify(post), options)
+      .map(result => {
+        this.result = result.json();
+        return result.json();
+      });
   }
 
   getServiceOrders() {
     return this._http.get("/api/allserviceorders")
-    .map(
+      .map(
       (response: Response) => {
         this.result = response.json();
         return response.json();
@@ -84,8 +84,8 @@ export class DataService {
   }
 
   getServiceOrder(id) {
-    return this._http.get("/api/allserviceorders/"+id)
-     .map(
+    return this._http.get("/api/allserviceorders/" + id)
+      .map(
       (response: Response) => {
         this.result = response.json();
         return response.json();
@@ -93,25 +93,53 @@ export class DataService {
       );
   }
 
-  updateServiceOrder(id, post){
-  let headers = new Headers({ 'Content-Type': 'application/json'});
-  let options = new RequestOptions({ headers: headers });
-  return this._http.put("/api/updateserviceorder/"+id,JSON.stringify(post),options)
-  .map(result => {
-    this.result = result.json();
-    return result.json();
-  });
-}
+  updateServiceOrder(id, post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.put("/api/updateserviceorder/" + id, JSON.stringify(post), options)
+      .map(result => {
+        this.result = result.json();
+        return result.json();
+      });
+  }
 
-addServiceOrderNote(id, post) {
-  let headers = new Headers({ 'Content-Type': 'application/json'});
-  let options = new RequestOptions({ headers: headers });
+  addServiceOrderNote(id, post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
 
-  return this._http.put("/api/addserviceordernote/"+id,JSON.stringify(post),options)
-  .map(result => {
-    this.result = result.json();
-    return result.json();
-  });
-}
+    return this._http.put("/api/addserviceordernote/" + id, JSON.stringify(post), options)
+      .map(result => {
+        this.result = result.json();
+        return result.json();
+      });
+  }
+
+  signUpUser(post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post("/auth/signup", JSON.stringify(post), options);
+  }
+
+  logInUser(post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post("/auth/login", JSON.stringify(post), options);
+  }
+
+  logOutUser() {
+    return this._http.get("/auth/logout");
+  }
+
+  getUserInfo() {
+    return this._http.get("/auth/userinfo")
+      .map(
+      (response: Response) => {
+        this.result = response.json();
+        return response.json();
+      }
+      );
+  }
+
+
 
 }

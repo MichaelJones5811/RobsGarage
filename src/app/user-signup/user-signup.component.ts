@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import { Router } from "@angular/router";
 
+
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.css']
+  selector: 'app-user-signup',
+  templateUrl: './user-signup.component.html',
+  styleUrls: ['./user-signup.component.css']
 })
-export class LandingPageComponent implements OnInit {
+export class UserSignupComponent implements OnInit {
 
   constructor(private dataService: DataService,
               private router: Router) { }
@@ -17,7 +18,7 @@ export class LandingPageComponent implements OnInit {
 
   onSubmit(form) {
     console.log(form.value);
-    this.dataService.logInUser(form.value)
+    this.dataService.signUpUser(form.value)
     .subscribe(info => {
       console.log(info.url);
       let urlPath = info.url;

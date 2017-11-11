@@ -1,11 +1,24 @@
 <div class="container">
 
-  <form class="form-signin">
+  <!-- Begin page content -->
+  <div class="mt-3">
+    <h1>This is temporary.</h1>
+  </div>
+  <p class="lead">Eventually we can have landing page content go here.</p>
+  <p>Maybe pictures of car parts or something.</p>
+
+  <button routerLink="/signupform">Sign Up Customer</button>
+  <button routerLink="/findcustomer">Find Customer</button>
+  <button routerLink="/createserviceorder">Create Service Order</button>
+  <button routerLink="/servicedashboard">Dashboard</button>
+  <button routerLink="/usersignup">User Signup</button>
+
+  <form class="form-signin" (ngSubmit)="onSubmit(f)" #f="ngForm">
     <h2 class="form-signin-heading">Please sign in</h2>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" id="inputEmail" ngModel name="email" class="form-control" placeholder="Email address" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" id="inputPassword" ngModel name="password" class="form-control" placeholder="Password" required>
     <div class="checkbox">
       <label>
               <input type="checkbox" value="remember-me"> Remember me

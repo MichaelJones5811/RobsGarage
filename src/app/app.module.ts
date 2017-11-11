@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
-import { RouterModule }   from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +15,11 @@ import { CustomerService } from './customer.service';
 import { ServiceDashboardComponent } from './service-dashboard/service-dashboard.component';
 import { ServiceOrderService } from './service-order.service';
 import { ViewServiceOrderComponent } from './view-service-order/view-service-order.component';
+
 import { AddServiceComponent } from './add-service/add-service.component';
+
+import { UserSignupComponent } from './user-signup/user-signup.component';
+
 
 @NgModule({
   declarations: [
@@ -27,18 +31,22 @@ import { AddServiceComponent } from './add-service/add-service.component';
     SelectCustomerComponent,
     ServiceDashboardComponent,
     ViewServiceOrderComponent,
+
     AddServiceComponent,
+
+
+    UserSignupComponent
 
 
   ],
   imports: [
     BrowserModule,
-    HttpModule ,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       {
-        path: 'landingpage',
+        path: '',
         component: LandingPageComponent
       },
       {
@@ -66,13 +74,26 @@ import { AddServiceComponent } from './add-service/add-service.component';
         component: ViewServiceOrderComponent
       },
       {
+
         path: 'addservice',
         component: AddServiceComponent
       },
       {
+      path: 'usersignup',
+        component: UserSignupComponent
+      },
+      
+      {
       path: '',
       redirectTo: '/landingpage',
       pathMatch: 'full'
+      },
+        
+      {
+        path: '',
+        redirectTo: '',
+        pathMatch: 'full'
+
       }
      
     ])
