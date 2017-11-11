@@ -1,3 +1,4 @@
+import { AddServiceService } from './add-service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { CustomerService } from './customer.service';
 import { ServiceDashboardComponent } from './service-dashboard/service-dashboard.component';
 import { ServiceOrderService } from './service-order.service';
 import { ViewServiceOrderComponent } from './view-service-order/view-service-order.component';
+import { AddServiceComponent } from './add-service/add-service.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
     CustomerComponent,
     SelectCustomerComponent,
     ServiceDashboardComponent,
-    ViewServiceOrderComponent
+    ViewServiceOrderComponent,
+    AddServiceComponent,
+
 
   ],
   imports: [
@@ -62,13 +66,18 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
         component: ViewServiceOrderComponent
       },
       {
+        path: 'addservice',
+        component: AddServiceComponent
+      },
+      {
       path: '',
       redirectTo: '/landingpage',
       pathMatch: 'full'
       }
+     
     ])
   ],
-  providers: [DataService, CustomerService, ServiceOrderService],
+  providers: [DataService, CustomerService, ServiceOrderService,AddServiceService],
   bootstrap: [AppComponent]
 })
 

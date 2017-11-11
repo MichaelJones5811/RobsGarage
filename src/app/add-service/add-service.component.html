@@ -1,0 +1,15 @@
+<h1>Add a Service</h1>
+
+<form (ngSubmit) = 'onSubmit(f)' #f='ngForm' >
+  <label>type</label>
+  <input type = "text" ngModel name = 'type' required>
+  <label>price</label>
+  <input type = "number" ngModel name = 'price' required>
+  <label>desc</label>
+  <input type = "text" ngModel name = 'desc' required>
+
+  <button type = 'submit'>Submit</button>
+
+
+
+</form>

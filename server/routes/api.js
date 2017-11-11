@@ -5,6 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoose = require("mongoose");
 const customer = require("../../models/customerModel.js");
 const ServiceOrder = require("../../models/serviceOrderModel.js");
+const service = require("../../models/serviceModel.js");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 
 // Connect
@@ -180,7 +181,21 @@ let response = {
         res.send(order);
       });
     });
-
+    router.post('/addservice', function(req, res) {
+      console.log('Posting an New Service');
+      console.log(req.body);
+      var newService = new service(req.body);
+     
+      
+      newService.save(function(err, service) {
+  
+          if(err) {
+              console.log('Error inserting the new service');
+          } else {
+              res.json(service);
+          }
+      });
+  });
 
 
 module.exports = router;
