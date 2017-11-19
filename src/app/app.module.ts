@@ -15,7 +15,7 @@ import { CustomerService } from './customer.service';
 import { ServiceDashboardComponent } from './service-dashboard/service-dashboard.component';
 import { ServiceOrderService } from './service-order.service';
 import { ViewServiceOrderComponent } from './view-service-order/view-service-order.component';
-
+import { routes } from './app.routing';
 import { AddServiceComponent } from './add-service/add-service.component';
 
 import { UserSignupComponent } from './user-signup/user-signup.component';
@@ -45,62 +45,7 @@ import { keyframes } from '@angular/core/src/animation/dsl';
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: LandingPageComponent
-      },
-      {
-        path: 'signupform',
-        component: SignUpFormComponent
-      },
-      {
-        path: 'findcustomer',
-        component: SelectCustomerComponent
-      },
-      {
-        path: 'customerdashboard',
-        component: CustomerComponent
-      },
-      {
-        path: 'createserviceorder',
-        component: ServiceOrderComponent
-      },
-      {
-        path: 'servicedashboard',
-        component: ServiceDashboardComponent
-      },
-      {
-        path: 'viewserviceorder',
-        component: ViewServiceOrderComponent
-      },
-      {
-
-        path: 'addservice',
-        component: AddServiceComponent
-      },
-      {
-        path: 'usersignup',
-        component: UserSignupComponent
-      },
-      {
-        path: 'addservice',
-        component: AddServiceComponent
-      },
-      {
-      path: '',
-      redirectTo: 'landingpage',
-      pathMatch: 'full'
-      },
-        
-      {
-        path: '',
-        redirectTo: '',
-        pathMatch: 'full'
-
-      }
-     
-    ])
+    RouterModule.forRoot(routes)
   ],
   providers: [DataService, CustomerService, ServiceOrderService,AddServiceService],
   bootstrap: [AppComponent]
