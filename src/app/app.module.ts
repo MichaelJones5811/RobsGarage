@@ -19,6 +19,7 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
 import { AddServiceComponent } from './add-service/add-service.component';
 
 import { UserSignupComponent } from './user-signup/user-signup.component';
+import { keyframes } from '@angular/core/src/animation/dsl';
 
 
 @NgModule({
@@ -79,10 +80,13 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
         component: AddServiceComponent
       },
       {
-      path: 'usersignup',
+        path: 'usersignup',
         component: UserSignupComponent
       },
-      
+      {
+        path: 'addservice',
+        component: AddServiceComponent
+      },
       {
       path: '',
       redirectTo: 'landingpage',
