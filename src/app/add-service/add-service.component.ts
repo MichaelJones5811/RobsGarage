@@ -8,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddServiceComponent implements OnInit {
 
-  constructor(private addServiceService: AddServiceService) { }
+  constructor(private _addServiceService: AddServiceService) { }
 
   ngOnInit() {
   }
   onSubmit(f){
-    this.addServiceService.postService(f.value)
-    .subscribe(info => console.log(info)
+    this._addServiceService.postService(f.value)
+    .subscribe(info => console.log(info )
     )}
 }
