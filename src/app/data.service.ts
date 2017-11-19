@@ -33,14 +33,15 @@ export class DataService {
 
   //when adding with sign up form
   postCustomers(post: Customer) {
-    console.log(Customer + "service data");
+    //console.log(Customer + "service data");
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
     return this._http.post("/api/addCustomer", JSON.stringify(post), options)
-      .map(result => this.result = result.json().data);
+      .map(result => {
+        return result.json();
+    });
   }
-
   //when adding with service order
   addCustomer(post) {
     console.log(Customer + "service data");
