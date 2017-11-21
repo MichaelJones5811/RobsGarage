@@ -1,15 +1,52 @@
 <h1>Add a Service</h1>
 
-<form (ngSubmit) = 'onSubmit(f)' #f='ngForm' >
-  <label>type</label>
-  <input type = "text" ngModel name = 'type' required>
-  <label>price</label>
-  <input type = "number" ngModel name = 'price' required>
-  <label>desc</label>
-  <input type = "text" ngModel name = 'desc' required>
+<form (ngSubmit)='onSubmit(f)' #f='ngForm'>
+  <div [hidden]="f.submitted">
+    <div class="form-group">
+      <label for='type'>Type</label>
+      <input id='type' type="text" class='form-control' ngModel name='type' required minlength="3" [(ngModel)]='f.type' #type='ngModel'>
 
-  <button type = 'submit'>Submit</button>
+      <div *ngIf="type.invalid && (type.dirty || type.touched)" class="alert alert-danger">
 
+        <div *ngIf="type.errors.required">
+          Type is required.
+        </div>
+        <div *ngIf="type.errors.minlength">
+          Type must be at least 3 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input class='form-control' type="number" ngModel name='price' required [(ngModel)]='f.price' #price='ngModel'>
+      <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+
+        <div *ngIf="price.errors.required">
+          Price is required.
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input class='form-control' type="text" ngModel name='desc' required [(ngModel)]='f.desc' #desc='ngModel'>
+      <div *ngIf="desc.invalid && (desc.dirty || desc.touched)" class="alert alert-danger">
+
+        <div *ngIf="desc.errors.required">
+          Description is required.
+        </div>
+
+      </div>
+    </div>
+
+    <button type='submit' class="btn btn-success" [disabled]='f.invalid'>Submit</button>
+    <div class="service-sumitted" *ngIf="f.sumbitted">
+      <p>Service has been added</p>
+    </div>
+  </div>
 
 
 </form>
+
+
