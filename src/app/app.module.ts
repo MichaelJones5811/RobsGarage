@@ -20,6 +20,8 @@ import { AddServiceComponent } from './add-service/add-service.component';
 
 import { UserSignupComponent } from './user-signup/user-signup.component';
 import { keyframes } from '@angular/core/src/animation/dsl';
+import { AuthService } from "./auth.service";
+import { AuthGuard } from "./auth-guard.service";
 
 
 @NgModule({
@@ -47,7 +49,7 @@ import { keyframes } from '@angular/core/src/animation/dsl';
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [DataService, CustomerService, ServiceOrderService,AddServiceService],
+  providers: [DataService, CustomerService, ServiceOrderService,AddServiceService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 

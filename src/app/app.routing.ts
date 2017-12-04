@@ -20,6 +20,7 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
 import { AddServiceComponent } from './add-service/add-service.component';
 
 import { UserSignupComponent } from './user-signup/user-signup.component';
+import {AuthGuard} from "./auth-guard.service";
 
 export const routes: Routes = [
     {
@@ -31,7 +32,7 @@ export const routes: Routes = [
         component: SignUpFormComponent
       },
       {
-        path: 'findcustomer',
+        path: 'findcustomer', canActivate: [AuthGuard],
         component: SelectCustomerComponent
       },
       {
@@ -68,7 +69,7 @@ export const routes: Routes = [
       redirectTo: 'landingpage',
       pathMatch: 'full'
       },
-        
+
       {
         path: '',
         redirectTo: '',
