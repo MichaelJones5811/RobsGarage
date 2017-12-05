@@ -52,7 +52,9 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({extended: false}));
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({ secret: 'robsgarageistheshiz112',
+                  saveUninitialized: true,
+                  resave: true})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
