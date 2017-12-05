@@ -15,9 +15,9 @@ export class AddServiceComponent implements OnInit {
   onSubmit(f){
     this._addServiceService.postService(f.value)
     .subscribe(info => {
-      console.log(info )
-    this.serverMessage = info.message;
-    
+      if (info.message) {
+        this.serverMessage = info.message;
+      }
 }
     )}
   }
