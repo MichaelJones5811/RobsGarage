@@ -9,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class AddServiceComponent implements OnInit {
 
   constructor(private _addServiceService: AddServiceService) { }
-
+  serverMessage = '';
   ngOnInit() {
   }
   onSubmit(f){
     this._addServiceService.postService(f.value)
-    .subscribe(info => console.log(info )
-    )}
+    .subscribe(info => {
+      console.log(info )
+    this.serverMessage = info.message;
+    
 }
+    )}
+  }

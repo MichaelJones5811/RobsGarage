@@ -3,9 +3,18 @@ var Schema = mongoose.Schema,
 
   CustomerSchema = new Schema({
     customer_id: String,
-    fName: String,
-    lName: String,
-    phNumber: String,
+    fName: {
+      type: String,
+      required: true
+    },
+    lName:{
+      type: String,
+      required: true
+    },
+    phNumber:{
+      type: String,
+      required: true
+    },
     email: String,
     make: String,
     model: String,

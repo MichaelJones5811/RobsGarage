@@ -5,15 +5,15 @@ ServiceSchema = new Schema ({
     type :{
      type: String,
      min:[3, 'Type must be at least 3 characters long'],
-     require: true
+     required: true
     },
     price:{ 
       type: Number,
-      require: true
+      required: true
     },
     desc: {
      type: String,
-     require: true
+     required: true
     }
 });
 

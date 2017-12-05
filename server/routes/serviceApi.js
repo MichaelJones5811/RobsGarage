@@ -13,7 +13,12 @@ router.post('/addservice', function(req, res) {
     newService.save(function(err, service) {
 
         if(err) {
-            console.log('Error inserting the new service');
+            var serverMessage = {
+              message:  'Error inserting the new service999'
+            }
+            console.log(serverMessage);
+
+            res.send(serverMessage);
         } else {
             res.json(service);
         }
