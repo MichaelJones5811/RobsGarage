@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
+import { AddServiceService } from "../add-service.service";
 
 @Component({
   selector: 'app-service-order',
@@ -7,27 +8,73 @@ import { DataService } from "../data.service";
   styleUrls: ['./service-order.component.css']
 })
 export class ServiceOrderComponent implements OnInit {
-    cusCarService = "";
+    cusCarService = [];
+    cusCarServiceOne = "";
     cusCarServiceTwo = "";
     cusCarServiceThree = "";
-  constructor(private dataService: DataService) { }
+    cusCarServiceFour = "";
+    cusCarServiceFive = "";
+    cusCarServiceSix = "";
+    cusCarServiceSeven = "";
+    cusCarServiceEight = "";
+    cusCarServiceNine = "";
+    cusCarServiceTen = "";
+    cusCarServiceArray = [""];
+  constructor(private dataService: DataService, private addServiceService: AddServiceService) { }
 
   ngOnInit() {
+    this.addServiceService.getAllServices()
+    .subscribe(
+      (services: any[]) => {
+        console.log(services);
+        for (var i = 0; i < services.length; i++) {
+          this.cusCarServiceArray.push(services[i].type);
+        }
+        console.log(this.cusCarServiceArray);
+      },
+      (error) => console.log(error)
+      );
   }
 
   successMessage = "";
 
   onSubmit(form) {
     // remove empty service fields and then post service
-    if (form.value.cusCarServiceTwo == "") {
-      delete form.value.cusCarServiceTwo;
+    this.cusCarService = [];
+    if (form.value.cusCarServiceOne != "" && form.value.cusCarServiceOne != null) {
+      this.cusCarService.push(form.value.cusCarServiceOne);
     }
-    if (form.value.cusCarServiceThree == "") {
-      delete form.value.cusCarServiceThree;
+    if (form.value.cusCarServiceTwo != "" && form.value.cusCarServiceTwo != null) {
+      this.cusCarService.push(form.value.cusCarServiceTwo);
+    }
+    if (form.value.cusCarServiceThree != "" && form.value.cusCarServiceThree != null) {
+      this.cusCarService.push(form.value.cusCarServiceThree);
+    }
+    if (form.value.cusCarServiceFour != "" && form.value.cusCarServiceFour != null) {
+      this.cusCarService.push(form.value.cusCarServiceFour);
+    }
+    if (form.value.cusCarServiceFive != "" && form.value.cusCarServiceFive != null) {
+      this.cusCarService.push(form.value.cusCarServiceFive);
+    }
+    if (form.value.cusCarServiceSix != "" && form.value.cusCarServiceSix != null) {
+      this.cusCarService.push(form.value.cusCarServiceSix);
+    }
+    if (form.value.cusCarServiceSeven != "" && form.value.cusCarServiceSeven != null) {
+      this.cusCarService.push(form.value.cusCarServiceSeven);
+    }
+    if (form.value.cusCarServiceEight != "" && form.value.cusCarServiceEight != null) {
+      this.cusCarService.push(form.value.cusCarServiceEight);
+    }
+    if (form.value.cusCarServiceNine != "" && form.value.cusCarServiceNine != null) {
+      this.cusCarService.push(form.value.cusCarServiceNine);
+    }
+    if (form.value.cusCarServiceTen != "" && form.value.cusCarServiceTen != null) {
+      this.cusCarService.push(form.value.cusCarServiceTen);
     }
 
     form.value.status = "Pending";
     form.value.location = "Lot";
+    form.value.cusCarService = this.cusCarService;
     this.dataService.postServiceOrder(form.value)
     .subscribe(info => {
       console.log(info);
