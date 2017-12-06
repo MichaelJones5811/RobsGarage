@@ -21,13 +21,13 @@
         <input type="text" id="cusCarYear" class="form-control" ngModel name="cusCarYear" required>
         <label for="cusService">Service:</label>
         <select type="text" id="cusCarServiceOne" class="form-control" [(ngModel)]="cusCarServiceOne" name="cusCarServiceOne" required>
-          <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
+          <option *ngFor="let service of cusCarServiceArray" value='{"type":"{{service.type}}","price":"{{service.price}}","desc":"{{service.desc}}"}'>{{service.type}}</option>
         </select>
         <button type="button" (click)="addServiceField()">Add Service</button>
         <div id="appendItemDiv"></div>
         <label for="cusAttendant">Assigned To:</label>
         <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant" required>
-        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit Order</button>
+        <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Submit Order</button>
         <div *ngIf="successMessage != ''">
           <div class="alert alert-success">{{successMessage}}<div><button type="button" class="btn btn-success" routerLink="/servicedashboard">Current Orders</button></div></div>
         </div>

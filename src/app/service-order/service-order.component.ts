@@ -11,7 +11,7 @@ declare var $: any;
 export class ServiceOrderComponent implements OnInit {
     cusCarService = [];
     cusCarServiceOne = "";
-    cusCarServiceArray = [""];
+    cusCarServiceArray = [{type: "", price: "", desc: ""}];
     count = 0;
   constructor(private dataService: DataService, private addServiceService: AddServiceService) { }
 
@@ -21,7 +21,7 @@ export class ServiceOrderComponent implements OnInit {
       (services: any[]) => {
         console.log(services);
         for (var i = 0; i < services.length; i++) {
-          this.cusCarServiceArray.push(services[i].type);
+          this.cusCarServiceArray.push(services[i]);
         }
         console.log(this.cusCarServiceArray);
       },
@@ -35,15 +35,21 @@ export class ServiceOrderComponent implements OnInit {
     // remove empty service fields and then post service
 
     this.cusCarService = [];
-    if (form.value.cusCarServiceOne != "" && form.value.cusCarServiceOne != null) {
-      this.cusCarService.push(form.value.cusCarServiceOne);
+    var jsonString = form.value.cusCarServiceOne;
+    console.log("STRING ", jsonString);
+    var jsonService = JSON.parse(jsonString);
+    console.log("JSON: ", jsonService)
+    if (jsonService.type != "" && jsonService.type != null) {
+      this.cusCarService.push(jsonService);
     }
-    console.log("COUNT: ", this.count);
     for (var i = 1; i < this.count + 1; i++) {
       var serviceValue = $("#cusCarService-" + i).val().trim();
-      console.log("SERVICE VALUE: ", serviceValue);
-      if (serviceValue != "") {
-        this.cusCarService.push(serviceValue);
+      // var jsonValString = "'" + serviceValue + "'";
+      // console.log("json:", jsonValString);
+      var jsonValue = JSON.parse(serviceValue);
+
+      if (jsonValue.type != "") {
+        this.cusCarService.push(jsonValue);
       }
     }
 
@@ -93,8 +99,10 @@ export class ServiceOrderComponent implements OnInit {
     selectDiv.attr("id", "cusCarService-" + this.count);
     for (var i = 0; i < this.cusCarServiceArray.length; i++) {
       var option = $("<option>");
-      option.attr("value", this.cusCarServiceArray[i]);
-      option.text(this.cusCarServiceArray[i]);
+      var serviceText = this.cusCarServiceArray[i];
+      var jsonValue = '{"type":"' + serviceText.type + '","price":"' + serviceText.price + '","desc":"' + serviceText.desc + '"}';
+      option.attr("value", jsonValue);
+      option.text(serviceText.type);
       selectDiv.append(option);
     }
     $("#appendItemDiv").append(selectDiv);
