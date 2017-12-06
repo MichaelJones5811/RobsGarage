@@ -23,7 +23,7 @@
             <td>{{order.cusCarMake}} {{order.cusCarModel}}, {{order.cusCarYear}}</td>
             <td>{{order.location}}</td>
             <td>{{order.cusAttendant}}</td>
-            <td><div *ngFor="let service of order.cusCarService">{{service}}</div></td>
+            <td><div *ngFor="let service of order.cusCarService">{{service.type}}</div></td>
             <td>{{order.created_at | date:"medium"}}</td>
           </tr>
         </tbody>
