@@ -20,28 +20,11 @@
         <label for="cusCarYear">Year:</label>
         <input type="text" id="cusCarYear" class="form-control" ngModel name="cusCarYear" required>
         <label for="cusService">Service:</label>
-        <select type="text" id="cusCarService" class="form-control" [(ngModel)]="cusCarService" name="cusCarService" required>
-          <option value=""></option>
-          <option value="oil">Oil Change</option>
-          <option value="inspection">Inspection</option>
-          <option value="engine">Fix Engine</option>
+        <select type="text" id="cusCarServiceOne" class="form-control" [(ngModel)]="cusCarServiceOne" name="cusCarServiceOne" required>
+          <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
         </select>
-        <div *ngIf="cusCarService != ''">
-          <select type="text" id="cusCarServiceTwo" class="form-control" [(ngModel)]="cusCarServiceTwo" name="cusCarServiceTwo">
-            <option value=""></option>
-            <option value="oil">Oil Change</option>
-            <option value="inspection">Inspection</option>
-            <option value="engine">Fix Engine</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceTwo != '' && cusCarService != ''">
-          <select type="text" id="cusCarServiceThree" class="form-control" [(ngModel)]="cusCarServiceThree" name="cusCarServiceThree">
-            <option value=""></option>
-            <option value="oil">Oil Change</option>
-            <option value="inspection">Inspection</option>
-            <option value="engine">Fix Engine</option>
-          </select>
-        </div>
+        <button type="button" (click)="addServiceField()">Add Service</button>
+        <div id="appendItemDiv"></div>
         <label for="cusAttendant">Assigned To:</label>
         <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant" required>
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit Order</button>
