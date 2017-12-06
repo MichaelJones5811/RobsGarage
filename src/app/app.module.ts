@@ -22,6 +22,7 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
 import { keyframes } from '@angular/core/src/animation/dsl';
 import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth-guard.service";
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -38,7 +39,10 @@ import { AuthGuard } from "./auth-guard.service";
     AddServiceComponent,
 
 
-    UserSignupComponent
+    UserSignupComponent,
+
+
+    HeaderComponent
 
 
   ],
