@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import { AddServiceService } from "../add-service.service";
 
+declare var $: any;
 @Component({
   selector: 'app-service-order',
   templateUrl: './service-order.component.html',
@@ -10,16 +11,8 @@ import { AddServiceService } from "../add-service.service";
 export class ServiceOrderComponent implements OnInit {
     cusCarService = [];
     cusCarServiceOne = "";
-    cusCarServiceTwo = "";
-    cusCarServiceThree = "";
-    cusCarServiceFour = "";
-    cusCarServiceFive = "";
-    cusCarServiceSix = "";
-    cusCarServiceSeven = "";
-    cusCarServiceEight = "";
-    cusCarServiceNine = "";
-    cusCarServiceTen = "";
     cusCarServiceArray = [""];
+    count = 0;
   constructor(private dataService: DataService, private addServiceService: AddServiceService) { }
 
   ngOnInit() {
@@ -40,36 +33,18 @@ export class ServiceOrderComponent implements OnInit {
 
   onSubmit(form) {
     // remove empty service fields and then post service
+
     this.cusCarService = [];
     if (form.value.cusCarServiceOne != "" && form.value.cusCarServiceOne != null) {
       this.cusCarService.push(form.value.cusCarServiceOne);
     }
-    if (form.value.cusCarServiceTwo != "" && form.value.cusCarServiceTwo != null) {
-      this.cusCarService.push(form.value.cusCarServiceTwo);
-    }
-    if (form.value.cusCarServiceThree != "" && form.value.cusCarServiceThree != null) {
-      this.cusCarService.push(form.value.cusCarServiceThree);
-    }
-    if (form.value.cusCarServiceFour != "" && form.value.cusCarServiceFour != null) {
-      this.cusCarService.push(form.value.cusCarServiceFour);
-    }
-    if (form.value.cusCarServiceFive != "" && form.value.cusCarServiceFive != null) {
-      this.cusCarService.push(form.value.cusCarServiceFive);
-    }
-    if (form.value.cusCarServiceSix != "" && form.value.cusCarServiceSix != null) {
-      this.cusCarService.push(form.value.cusCarServiceSix);
-    }
-    if (form.value.cusCarServiceSeven != "" && form.value.cusCarServiceSeven != null) {
-      this.cusCarService.push(form.value.cusCarServiceSeven);
-    }
-    if (form.value.cusCarServiceEight != "" && form.value.cusCarServiceEight != null) {
-      this.cusCarService.push(form.value.cusCarServiceEight);
-    }
-    if (form.value.cusCarServiceNine != "" && form.value.cusCarServiceNine != null) {
-      this.cusCarService.push(form.value.cusCarServiceNine);
-    }
-    if (form.value.cusCarServiceTen != "" && form.value.cusCarServiceTen != null) {
-      this.cusCarService.push(form.value.cusCarServiceTen);
+    console.log("COUNT: ", this.count);
+    for (var i = 1; i < this.count + 1; i++) {
+      var serviceValue = $("#cusCarService-" + i).val().trim();
+      console.log("SERVICE VALUE: ", serviceValue);
+      if (serviceValue != "") {
+        this.cusCarService.push(serviceValue);
+      }
     }
 
     form.value.status = "Pending";
@@ -109,6 +84,20 @@ export class ServiceOrderComponent implements OnInit {
       (error) => console.log(error)
       );
 
+
+  }
+
+  addServiceField() {
+    this.count++
+    var selectDiv = $("<select>");
+    selectDiv.attr("id", "cusCarService-" + this.count);
+    for (var i = 0; i < this.cusCarServiceArray.length; i++) {
+      var option = $("<option>");
+      option.attr("value", this.cusCarServiceArray[i]);
+      option.text(this.cusCarServiceArray[i]);
+      selectDiv.append(option);
+    }
+    $("#appendItemDiv").append(selectDiv);
 
   }
 

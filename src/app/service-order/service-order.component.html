@@ -23,51 +23,8 @@
         <select type="text" id="cusCarServiceOne" class="form-control" [(ngModel)]="cusCarServiceOne" name="cusCarServiceOne" required>
           <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
         </select>
-        <div *ngIf="cusCarServiceOne != ''">
-          <select type="text" id="cusCarServiceTwo" class="form-control" [(ngModel)]="cusCarServiceTwo" name="cusCarServiceTwo">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceOne != '' && cusCarServiceTwo != ''">
-          <select type="text" id="cusCarServiceThree" class="form-control" [(ngModel)]="cusCarServiceThree" name="cusCarServiceThree">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceOne != '' && cusCarServiceTwo != '' && cusCarServiceThree != ''">
-          <select type="text" id="cusCarServiceFour" class="form-control" [(ngModel)]="cusCarServiceFour" name="cusCarServiceFour">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceOne != '' && cusCarServiceTwo != '' && cusCarServiceThree != '' && cusCarServiceFour !=''">
-          <select type="text" id="cusCarServiceFive" class="form-control" [(ngModel)]="cusCarServiceFive" name="cusCarServiceFive">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceOne != '' && cusCarServiceTwo != '' && cusCarServiceThree != '' && cusCarServiceFour !='' && cusCarServiceFive !=''">
-          <select type="text" id="cusCarServiceSix" class="form-control" [(ngModel)]="cusCarServiceSix" name="cusCarServiceSix">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceOne != '' && cusCarServiceTwo != '' && cusCarServiceThree != '' && cusCarServiceFour !='' && cusCarServiceFive !='' && cusCarServiceSix !=''">
-          <select type="text" id="cusCarServiceSeven" class="form-control" [(ngModel)]="cusCarServiceSeven" name="cusCarServiceSeven">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceOne != '' && cusCarServiceTwo != '' && cusCarServiceThree != '' && cusCarServiceFour !='' && cusCarServiceFive !='' && cusCarServiceSix !='' && cusCarServiceSeven !=''">
-          <select type="text" id="cusCarServiceEight" class="form-control" [(ngModel)]="cusCarServiceEight" name="cusCarServiceEight">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceOne != '' && cusCarServiceTwo != '' && cusCarServiceThree != '' && cusCarServiceFour !='' && cusCarServiceFive !='' && cusCarServiceSix !='' && cusCarServiceSeven !='' && cusCarServiceEight !=''">
-          <select type="text" id="cusCarServiceNine" class="form-control" [(ngModel)]="cusCarServiceNine" name="cusCarServiceNine">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
-        <div *ngIf="cusCarServiceOne != '' && cusCarServiceTwo != '' && cusCarServiceThree != '' && cusCarServiceFour !='' && cusCarServiceFive !='' && cusCarServiceSix !='' && cusCarServiceSeven !='' && cusCarServiceEight !='' && cusCarServiceNine !=''">
-          <select type="text" id="cusCarServiceTen" class="form-control" [(ngModel)]="cusCarServiceTen" name="cusCarServiceTen">
-              <option *ngFor="let service of cusCarServiceArray" value="{{service}}">{{service}}</option>
-          </select>
-        </div>
+        <button type="button" (click)="addServiceField()">Add Service</button>
+        <div id="appendItemDiv"></div>
         <label for="cusAttendant">Assigned To:</label>
         <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant" required>
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit Order</button>
