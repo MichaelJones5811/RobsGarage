@@ -28,7 +28,14 @@ const passport = require("passport");
 
     //Get logged in user info
     router.get("/userinfo", function(req, res) {
+      if(req.user) {
         res.json(req.user);
+      } else {
+        var errorMessage = {
+          errorMessage: "No user logged in"
+        };
+        res.json(errorMessage);
+      }
       });
 
 module.exports = router;

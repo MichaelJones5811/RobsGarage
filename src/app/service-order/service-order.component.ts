@@ -1,33 +1,61 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
+import { AddServiceService } from "../add-service.service";
 
+declare var $: any;
 @Component({
   selector: 'app-service-order',
   templateUrl: './service-order.component.html',
   styleUrls: ['./service-order.component.css']
 })
 export class ServiceOrderComponent implements OnInit {
-    cusCarService = "";
-    cusCarServiceTwo = "";
-    cusCarServiceThree = "";
-  constructor(private dataService: DataService) { }
+    cusCarService = [];
+    cusCarServiceOne = "";
+    cusCarServiceArray = [{type: "", price: "", desc: ""}];
+    count = 0;
+  constructor(private dataService: DataService, private addServiceService: AddServiceService) { }
 
   ngOnInit() {
+    this.addServiceService.getAllServices()
+    .subscribe(
+      (services: any[]) => {
+        console.log(services);
+        for (var i = 0; i < services.length; i++) {
+          this.cusCarServiceArray.push(services[i]);
+        }
+        console.log(this.cusCarServiceArray);
+      },
+      (error) => console.log(error)
+      );
   }
 
   successMessage = "";
 
   onSubmit(form) {
     // remove empty service fields and then post service
-    if (form.value.cusCarServiceTwo == "") {
-      delete form.value.cusCarServiceTwo;
+
+    this.cusCarService = [];
+    var jsonString = form.value.cusCarServiceOne;
+    console.log("STRING ", jsonString);
+    var jsonService = JSON.parse(jsonString);
+    console.log("JSON: ", jsonService)
+    if (jsonService.type != "" && jsonService.type != null) {
+      this.cusCarService.push(jsonService);
     }
-    if (form.value.cusCarServiceThree == "") {
-      delete form.value.cusCarServiceThree;
+    for (var i = 1; i < this.count + 1; i++) {
+      var serviceValue = $("#cusCarService-" + i).val().trim();
+      // var jsonValString = "'" + serviceValue + "'";
+      // console.log("json:", jsonValString);
+      var jsonValue = JSON.parse(serviceValue);
+
+      if (jsonValue.type != "") {
+        this.cusCarService.push(jsonValue);
+      }
     }
 
     form.value.status = "Pending";
     form.value.location = "Lot";
+    form.value.cusCarService = this.cusCarService;
     this.dataService.postServiceOrder(form.value)
     .subscribe(info => {
       console.log(info);
@@ -62,6 +90,22 @@ export class ServiceOrderComponent implements OnInit {
       (error) => console.log(error)
       );
 
+
+  }
+
+  addServiceField() {
+    this.count++
+    var selectDiv = $("<select>");
+    selectDiv.attr("id", "cusCarService-" + this.count);
+    for (var i = 0; i < this.cusCarServiceArray.length; i++) {
+      var option = $("<option>");
+      var serviceText = this.cusCarServiceArray[i];
+      var jsonValue = '{"type":"' + serviceText.type + '","price":"' + serviceText.price + '","desc":"' + serviceText.desc + '"}';
+      option.attr("value", jsonValue);
+      option.text(serviceText.type);
+      selectDiv.append(option);
+    }
+    $("#appendItemDiv").append(selectDiv);
 
   }
 

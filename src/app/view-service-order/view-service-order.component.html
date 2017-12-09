@@ -11,9 +11,7 @@
       <h5>Make: {{orderInfo?.cusCarMake}}</h5>
       <h5>Model: {{orderInfo?.cusCarModel}}</h5>
       <h5>Year: {{orderInfo?.cusCarYear}}</h5>
-      <h5>1st Service: {{orderInfo?.cusCarService}}</h5>
-      <h5>2nd Service: {{orderInfo?.cusCarServiceTwo}}</h5>
-      <h5>3rd Service: {{orderInfo?.cusCarServiceThree}}</h5>
+      <h5 *ngFor="let service of orderInfo?.cusCarService; let i = index">{{i + 1}}. Service: {{service.type}}</h5>
       <h5>Attendant: {{orderInfo?.cusAttendant}}</h5>
       <h5>Location: {{orderInfo?.location}}</h5>
       <h5>Notes:</h5>
