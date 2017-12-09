@@ -1,35 +1,109 @@
-<div class="container">
 
+<div class = 'jumbotron'>
+   
   <!-- Begin page content -->
-  <div class="mt-3">
-    <h1>This is temporary.</h1>
-  </div>
-  <p class="lead">Eventually we can have landing page content go here.</p>
-  <p>Maybe pictures of car parts or something.</p>
+  
+ 
 
-  <button routerLink="/signupform">Sign Up Customer</button>
-  <button routerLink="/findcustomer">Find Customer</button>
-  <button routerLink="/createserviceorder">Create Service Order</button>
-  <button routerLink="/servicedashboard">Dashboard</button>
-  <button routerLink="/usersignup">User Signup</button>
-  <button routerLink="/addservice">Add A Service</button>
+  <div class = "container">
+  <div class = 'row center' id = 'firstrow'>
+    <div class>
+      <a routerLink="/signupform">
+        <div class="card" style="width: 20rem;" id=signupcustomer>
 
-  <form class="form-signin" (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" ngModel name="email" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" ngModel name="password" class="form-control" placeholder="Password" required>
-    <div class="checkbox">
-      <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
+          <img class="card-img-top">
+          <div class="card-body">
+            <h4 class="card-title">Sign Up Customer</h4>
+            <p class="card-text">Sign up a Customer and Add to Database</p>
+            <a routerLink="/signupform" class="btn btn-primary" id='button1'>Go To Sign Up Customer</a>
+          </div>
+        </div>
+      </a>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  </form>
+  <div>
+    <p></p>
+  </div>
+  
+  <div>
+    <a routerLink="/findcustomer">
+      <div class="card" style="width: 20rem;" id=findcustomer>
+
+        <img class="card-img-top">
+        <div class="card-body">
+          <h4 class="card-title">Find Customer</h4>
+          <p class="card-text">Find Current Customer</p>
+          <br>
+          <a routerLink="/findcustomer" class="btn btn-primary" id='button2'>Go To Find Customer</a>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div>
+      <a routerLink="/createserviceorder">
+        <div class="card" style="width: 20rem;" id=createserviceorder>
+  
+          <img class="card-img-top">
+          <div class="card-body">
+            <h4 class="card-title">Create a Service Order</h4>
+            <p class="card-text">Create a Service Order</p>
+            <br>
+            <a routerLink="/createserviceorder" class="btn btn-primary" id='button3'>Go To Create Service Order</a>
+          </div>
+        </div>
+      </a>
+    </div>
+</div><!--end of row -->
+<div class = row>
+  <div>
+      <a routerLink="/servicedashboard">
+        <div class="card" style="width: 20rem;" id=servicedashboard>
+  
+          <img class="card-img-top">
+          <div class="card-body">
+            <h4 class="card-title">View Service Dashboard</h4>
+            <p class="card-text">View Service Statuses</p>
+            <br>
+            <a routerLink="/servicedashboard" class="btn btn-primary" id='button4'>Go To Services Dashboard</a>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div>
+        <a routerLink="/usersignup">
+          <div class="card" style="width: 20rem;" id=usersignup>
+    
+            <img class="card-img-top">
+            <div class="card-body">
+              <h4 class="card-title">Employee User Sign Up</h4>
+              <p class="card-text">Employee User Sign Up</p>
+              <br>
+              <a routerLink="/usersignup" class="btn btn-primary" id='button5'>Go To Employee User Sign Up</a>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div>
+          <a routerLink="/addservice">
+            <div class="card" style="width: 20rem;" id=addservice>
+      
+              <img class="card-img-top">
+              <div class="card-body">
+                <h4 class="card-title">Add Service</h4>
+                <p class="card-text">Add Service</p>
+                <br>
+                <a routerLink="/addservice" class="btn btn-primary" id='button6'>Go To Add Service</a>
+              </div>
+            </div>
+          </a>
+        </div>
+</div><!--end of row -->
+</div> <!-- /container -->
+
+
 
 </div>
-<!-- /container -->
+
+
 
 
 <!-- Bootstrap core JavaScript

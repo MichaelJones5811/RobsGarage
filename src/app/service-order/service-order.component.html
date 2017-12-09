@@ -27,7 +27,9 @@
         <div id="appendItemDiv"></div>
         <label for="cusAttendant">Assigned To:</label>
         <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant" required>
-        <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Submit Order</button>
+
+        <button class="btn" type="submit" [disabled]="!f.valid">Submit Order</button>
+
         <div *ngIf="successMessage != ''">
           <div class="alert alert-success">{{successMessage}}<div><button type="button" class="btn btn-success" routerLink="/servicedashboard">Current Orders</button></div></div>
         </div>

@@ -1,0 +1,63 @@
+
+#firstrow{
+    margin-bottom: 1rem;
+}
+#signupcustomer{
+    background-color: black;
+    color: yellow;
+}
+#button1{
+    background-color: white;
+    color: black;
+}
+#findcustomer{
+    background-color: #00788C;
+    color: #1D1160;
+    
+}
+#button2{
+    background-color: #ffffff;
+    color:  #888B8D;
+}
+#createserviceorder{
+    background-color: #008248;
+    color: #ffffff;
+
+}
+#button3{
+    background-color: #ffffff;
+    color:  #008248;
+}
+#servicedashboard{
+    background-color: #B72B35;
+    color: #111111
+}
+#button4{
+    background-color: #FFFFFF;
+    color: #A4A9AD
+
+}
+#usersignup{
+    background-color: #552583;
+    color: #FDB927;
+}
+#button5{
+    background-color: #FFFFFF;
+    color: #000000;
+}
+#addservice {
+    background-color: #0E3386;
+    color: #CC3433;
+
+}
+#button6{
+    background-color: #ffffff;
+    color: #CC3433;
+}
+.container{
+    margin-left: 1.50rem;
+}
+.card{
+    height: 13rem;
+    margin-right: 1rem;
+}

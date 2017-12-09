@@ -1,3 +1,4 @@
+import { EmployeeSignInComponent } from './employee-sign-in/employee-sign-in.component';
 import { Routes } from '@angular/router';
 import { AddServiceService } from './add-service.service';
 //import { BrowserModule } from '@angular/platform-browser';
@@ -50,6 +51,10 @@ export const routes: Routes = [
       {
         path: 'viewserviceorder',
         component: ViewServiceOrderComponent
+      },
+      {
+        path: 'signin',
+        component: EmployeeSignInComponent
       },
       {
 
