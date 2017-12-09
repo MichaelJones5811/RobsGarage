@@ -5,9 +5,10 @@ html {
   position: relative;
   min-height: 100%;
 }
-body {
+.body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background: #A5ACAF;;
 }
 
 .footer {
@@ -25,14 +26,14 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
+.btn {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: #000000;
+  margin-top: 1rem;
 }
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
+
+/* .form-signin .form-control {
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
@@ -59,7 +60,7 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-body > .container {
+/*body > .container {
   padding: 60px 15px 0;
 }
 
@@ -70,4 +71,4 @@ body > .container {
 
 code {
   font-size: 80%;
-}
+} */
