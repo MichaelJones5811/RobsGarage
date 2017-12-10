@@ -141,6 +141,16 @@ export class DataService {
       );
   }
 
+  usersCheck() {
+    return this._http.get("/auth/allusers")
+      .map(
+      (response: Response) => {
+        this.result = response.json();
+        return response.json();
+      }
+      );
+  }
+
 
 
 }

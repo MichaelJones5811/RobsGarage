@@ -22,8 +22,11 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
 import { keyframes } from '@angular/core/src/animation/dsl';
 import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth-guard.service";
+import { AdminGuard } from "./admin-guard.service";
+import { AddGuard } from "./add-guard.service";
 import { EmployeeSignInComponent } from './employee-sign-in/employee-sign-in.component';
 import { HeaderComponent } from './header/header.component';
+
 
 
 @NgModule({
@@ -46,7 +49,9 @@ import { HeaderComponent } from './header/header.component';
     EmployeeSignInComponent,
 
 
-    HeaderComponent
+    HeaderComponent,
+
+
 
 
   ],
@@ -57,7 +62,7 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [DataService, CustomerService, ServiceOrderService,AddServiceService, AuthService, AuthGuard],
+  providers: [DataService, CustomerService, ServiceOrderService,AddServiceService, AuthService, AuthGuard, AdminGuard, AddGuard],
   bootstrap: [AppComponent]
 })
 
