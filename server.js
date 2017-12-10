@@ -60,7 +60,10 @@ app.use(passport.session()); // persistent login sessions
 
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
-
+app.use(function(req, res, next) {
+      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  next();
+});
 // API location
 app.use('/api', api);
 

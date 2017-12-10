@@ -22,34 +22,44 @@ import { AddServiceComponent } from './add-service/add-service.component';
 
 import { UserSignupComponent } from './user-signup/user-signup.component';
 import {AuthGuard} from "./auth-guard.service";
+import {AdminGuard} from "./admin-guard.service";
+import {AddGuard} from "./add-guard.service";
 
 export const routes: Routes = [
     {
         path: '',
-        component: LandingPageComponent
+        component: EmployeeSignInComponent
       },
       {
-        path: 'signupform',
+        path: 'nouser', canActivate: [AddGuard],
+        component: UserSignupComponent
+      },
+      {
+        path: 'signupform', canActivate: [AuthGuard],
         component: SignUpFormComponent
+      },
+      {
+        path: 'landingpage', canActivate: [AuthGuard],
+        component: LandingPageComponent
       },
       {
         path: 'findcustomer', canActivate: [AuthGuard],
         component: SelectCustomerComponent
       },
       {
-        path: 'customerdashboard',
+        path: 'customerdashboard', canActivate: [AuthGuard],
         component: CustomerComponent
       },
       {
-        path: 'createserviceorder',
+        path: 'createserviceorder', canActivate: [AuthGuard],
         component: ServiceOrderComponent
       },
       {
-        path: 'servicedashboard',
+        path: 'servicedashboard', canActivate: [AuthGuard],
         component: ServiceDashboardComponent
       },
       {
-        path: 'viewserviceorder',
+        path: 'viewserviceorder', canActivate: [AuthGuard],
         component: ViewServiceOrderComponent
       },
       {
@@ -58,29 +68,20 @@ export const routes: Routes = [
       },
       {
 
-        path: 'addservice',
+        path: 'addservice', canActivate: [AdminGuard],
         component: AddServiceComponent
       },
       {
-        path: 'usersignup',
+        path: 'usersignup', canActivate: [AdminGuard],
         component: UserSignupComponent
       },
-      {
-        path: 'addservice',
-        component: AddServiceComponent
-      },
+
       {
       path: '',
-      redirectTo: 'landingpage',
+      redirectTo: 'signin',
       pathMatch: 'full'
       },
 
-      {
-        path: '',
-        redirectTo: '',
-        pathMatch: 'full'
-
-      }
 
 
 
