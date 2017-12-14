@@ -27,12 +27,17 @@ import {AddGuard} from "./add-guard.service";
 
 export const routes: Routes = [
     {
+
+        path: 'landingpage',
+        component: LandingPageComponent
+    },
         path: '',
         component: EmployeeSignInComponent
       },
       {
         path: 'nouser', canActivate: [AddGuard],
         component: UserSignupComponent
+
       },
       {
         path: 'signupform', canActivate: [AuthGuard],
@@ -77,8 +82,14 @@ export const routes: Routes = [
       },
 
       {
+
+      path: 'landingpage',
+      redirectTo: 'landingpage',
+      },
+      {
       path: '',
       redirectTo: 'signin',
+
       pathMatch: 'full'
       },
 
