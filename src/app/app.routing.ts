@@ -25,7 +25,7 @@ import {AuthGuard} from "./auth-guard.service";
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'landingpage',
         component: LandingPageComponent
       },
       {
@@ -70,7 +70,7 @@ export const routes: Routes = [
         component: AddServiceComponent
       },
       {
-      path: '',
+      path: 'landingpage',
       redirectTo: 'landingpage',
       pathMatch: 'full'
       },
