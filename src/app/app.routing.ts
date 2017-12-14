@@ -21,77 +21,79 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
 import { AddServiceComponent } from './add-service/add-service.component';
 
 import { UserSignupComponent } from './user-signup/user-signup.component';
-import {AuthGuard} from "./auth-guard.service";
-import {AdminGuard} from "./admin-guard.service";
-import {AddGuard} from "./add-guard.service";
+import { AuthGuard } from "./auth-guard.service";
+import { AdminGuard } from "./admin-guard.service";
+import { AddGuard } from "./add-guard.service";
 
 export const routes: Routes = [
-    {
 
-        path: 'landingpage',
-        component: LandingPageComponent
-    },
-        path: '',
-        component: EmployeeSignInComponent
-      },
-      {
-        path: 'nouser', canActivate: [AddGuard],
-        component: UserSignupComponent
+  {
+    path: '',
+    component: EmployeeSignInComponent
+  },
+  {
 
-      },
-      {
-        path: 'signupform', canActivate: [AuthGuard],
-        component: SignUpFormComponent
-      },
-      {
-        path: 'landingpage', canActivate: [AuthGuard],
-        component: LandingPageComponent
-      },
-      {
-        path: 'findcustomer', canActivate: [AuthGuard],
-        component: SelectCustomerComponent
-      },
-      {
-        path: 'customerdashboard', canActivate: [AuthGuard],
-        component: CustomerComponent
-      },
-      {
-        path: 'createserviceorder', canActivate: [AuthGuard],
-        component: ServiceOrderComponent
-      },
-      {
-        path: 'servicedashboard', canActivate: [AuthGuard],
-        component: ServiceDashboardComponent
-      },
-      {
-        path: 'viewserviceorder', canActivate: [AuthGuard],
-        component: ViewServiceOrderComponent
-      },
-      {
-        path: 'signin',
-        component: EmployeeSignInComponent
-      },
-      {
+    path: 'landingpage',
+    component: LandingPageComponent
+  },
+  {
+    path: 'nouser', canActivate: [AddGuard],
+    component: UserSignupComponent
 
-        path: 'addservice', canActivate: [AdminGuard],
-        component: AddServiceComponent
-      },
-      {
-        path: 'usersignup', canActivate: [AdminGuard],
-        component: UserSignupComponent
-      },
+  },
+  {
+    path: 'signupform', canActivate: [AuthGuard],
+    component: SignUpFormComponent
+  },
+  {
+    path: 'landingpage', canActivate: [AuthGuard],
+    component: LandingPageComponent
+  },
+  {
+    path: 'findcustomer', canActivate: [AuthGuard],
+    component: SelectCustomerComponent
+  },
+  {
+    path: 'customerdashboard', canActivate: [AuthGuard],
+    component: CustomerComponent
+  },
+  {
+    path: 'createserviceorder', canActivate: [AuthGuard],
+    component: ServiceOrderComponent
+  },
+  {
+    path: 'servicedashboard', canActivate: [AuthGuard],
+    component: ServiceDashboardComponent
+  },
+  {
+    path: 'viewserviceorder', canActivate: [AuthGuard],
+    component: ViewServiceOrderComponent
+  },
+  {
+    path: 'signin',
+    component: EmployeeSignInComponent
+  },
+  {
 
-      {
+    path: 'addservice', canActivate: [AdminGuard],
+    component: AddServiceComponent
+  },
+  {
+    path: 'usersignup', canActivate: [AdminGuard],
+    component: UserSignupComponent
+  },
 
-      path: 'landingpage',
-      redirectTo: 'landingpage',
-      },
-      {
-      path: '',
-      redirectTo: 'signin',
+  {
 
-      pathMatch: 'full'
-      },
+    path: 'landingpage',
+    redirectTo: 'landingpage',
+  },
+  {
+    path: '',
+    redirectTo: 'signin',
+
+    pathMatch: 'full'
+  },
 
 
 
