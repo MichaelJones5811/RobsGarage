@@ -26,6 +26,10 @@ import { AdminGuard } from "./admin-guard.service";
 import { AddGuard } from "./add-guard.service";
 import { EmployeeSignInComponent } from './employee-sign-in/employee-sign-in.component';
 import { HeaderComponent } from './header/header.component';
+import { CustomerLandingPageComponent } from './customer-landing-page/customer-landing-page.component';
+import { CustomerCreateAccountComponent } from './customer-create-account/customer-create-account.component';
+import { CustomerSignInComponent } from './customer-sign-in/customer-sign-in.component';
+import { CustomerPortalComponent } from './customer-portal/customer-portal.component';
 
 
 
@@ -50,6 +54,18 @@ import { HeaderComponent } from './header/header.component';
 
 
     HeaderComponent,
+
+
+    CustomerLandingPageComponent,
+
+
+    CustomerCreateAccountComponent,
+
+
+    CustomerSignInComponent,
+
+
+    CustomerPortalComponent,
 
 
 

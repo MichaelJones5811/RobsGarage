@@ -151,6 +151,22 @@ export class DataService {
       );
   }
 
+  //Customer Portal Routes
+
+  //Create customer user account
+  signUpCusUser(post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post("/auth/signupcustomer", JSON.stringify(post), options);
+  }
+
+  //log into customer portal
+  logInCusUser(post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post("/auth/logincustomer", JSON.stringify(post), options);
+  }
+
 
 
 }

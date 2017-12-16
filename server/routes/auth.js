@@ -63,4 +63,18 @@ const passport = require("passport");
         });
       });
 
+      //Customer Portal Routes
+
+      //Create customer user account
+      router.post('/signupcustomer', passport.authenticate('customer-local-signup', {
+          successRedirect : '/customerportal', // redirect to the secure profile section
+          failureRedirect : '/customerlanding', // redirect back to the signup page if there is an error
+      }));
+
+      router.post('/logincustomer', passport.authenticate('customer-local-login', {
+          successRedirect : '/customerportal', // redirect to the secure profile section
+          failureRedirect : '/customerlanding', // redirect back to the signup page if there is an error
+
+      }));
+
 module.exports = router;

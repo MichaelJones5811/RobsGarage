@@ -1,0 +1,22 @@
+<form class="form-signin" (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <h2 class="form-signin-heading">Create Your Account</h2>
+  <label for="fName" class="sr-only">First Name</label>
+  <input type="text" id="fName" ngModel name="fName" class="form-control" placeholder="First Name" required>
+
+  <label for="lName" class="sr-only">Last Name</label>
+  <input type="text" id="lName" ngModel name="lName" class="form-control" placeholder="Last Name" required>
+
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" ngModel name="email" class="form-control" placeholder="Email address" required>
+
+  <label for="phoneNumber" class="sr-only">Phone Number</label>
+  <input type="email" id="phoneNumber" ngModel name="phoneNumber" class="form-control" placeholder="Phone Number" required>
+
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" ngModel name="password" class="form-control" placeholder="Password" required>
+
+  <label for="inputPassword2" class="sr-only">Confirm Password</label>
+  <input type="password" id="inputPassword2" ngModel name="password2" class="form-control" placeholder="Confirm Password" required>
+
+  <button class="btn btn-lg  btn-block" type="submit">Sign Up</button>
+</form>
