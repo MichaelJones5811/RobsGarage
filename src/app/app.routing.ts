@@ -21,6 +21,8 @@ import { ViewServiceOrderComponent } from './view-service-order/view-service-ord
 import { AddServiceComponent } from './add-service/add-service.component';
 
 import { UserSignupComponent } from './user-signup/user-signup.component';
+import { CustomerLandingPageComponent} from"./customer-landing-page/customer-landing-page.component";
+import { CustomerPortalComponent} from"./customer-portal/customer-portal.component";
 import { AuthGuard } from "./auth-guard.service";
 import { AdminGuard } from "./admin-guard.service";
 import { AddGuard } from "./add-guard.service";
@@ -82,16 +84,21 @@ export const routes: Routes = [
     path: 'usersignup', canActivate: [AdminGuard],
     component: UserSignupComponent
   },
-
   {
-
+    path: 'customerlanding',
+    component: CustomerLandingPageComponent
+  },
+  {
+    path: 'customerportal',
+    component: CustomerPortalComponent
+  },
+  {
     path: 'landingpage',
     redirectTo: 'landingpage',
   },
   {
     path: '',
     redirectTo: 'signin',
-
     pathMatch: 'full'
   },
 
