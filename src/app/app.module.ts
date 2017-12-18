@@ -30,6 +30,8 @@ import { CustomerLandingPageComponent } from './customer-landing-page/customer-l
 import { CustomerCreateAccountComponent } from './customer-create-account/customer-create-account.component';
 import { CustomerSignInComponent } from './customer-sign-in/customer-sign-in.component';
 import { CustomerPortalComponent } from './customer-portal/customer-portal.component';
+import { ViewServiceOrderUpdateComponent } from './view-service-order/view-service-order-update/view-service-order-update.component';
+import { ViewServiceOrderInfoComponent } from './view-service-order/view-service-order-info/view-service-order-info.component';
 
 
 
@@ -66,6 +68,12 @@ import { CustomerPortalComponent } from './customer-portal/customer-portal.compo
 
 
     CustomerPortalComponent,
+
+
+    ViewServiceOrderUpdateComponent,
+
+
+    ViewServiceOrderInfoComponent,
 
 
 
