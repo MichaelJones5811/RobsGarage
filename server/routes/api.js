@@ -244,7 +244,7 @@ router.get("/allserviceorders", function(req, res) {
         res.send(order);
       });
     });
-    
+
 
 // Grab a service order by id
 router.get("/allserviceorders/:id", function(req, res) {
@@ -279,6 +279,20 @@ router.put("/updateserviceorder/:id", function(req, res) {
   });
 });
 
+//Update status of a service order service status
+router.put("/updateservicestatus/:id", function(req, res) {
+    ServiceOrder.update({"_id": req.params.id, "cusCarService.type": {"$eq": req.body.type}}, {"$set": {"cusCarService.$.status": req.body.newStatus}},function(err, data) {
+      if(err) {
+        console.log(err);
+        res.send(err);
+        return;
+      }
+      var successObj = {
+        "msg": "updated"
+      };
+      res.json(successObj);
+    });
+});
 //Add Note to service order
 router.put("/addserviceordernote/:id", function(req, res) {
   var info = req.body;

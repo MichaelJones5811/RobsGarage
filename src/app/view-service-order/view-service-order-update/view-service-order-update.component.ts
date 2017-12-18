@@ -14,9 +14,11 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
 
   orderId = "";
   orderNotes = [];
+  curCarServiceArray = [{type: "", price: "", desc: "", status:""}];
 
   ngOnInit() {
     this.orderId = this.serviceOrderService.currentServiceOrderInfo();
+    this.getCurrentServices(this.orderId);
   }
 
 
@@ -49,6 +51,34 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
   onNoteSubmit(form) {
     console.log(form.value);
     this.dataService.addServiceOrderNote(this.orderId, form.value)
+    .subscribe(
+      res => {
+        this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+      }
+    )
+  }
+
+  getCurrentServices(value) {
+    this.dataService.getServiceOrder(this.orderId)
+    .subscribe(
+      (response) => {
+        console.log("Array for services: ", response[0]);
+        for (var i = 0; i < response[0].cusCarService.length; i++) {
+          this.curCarServiceArray.push(response[0].cusCarService[i]);
+        }
+        console.log("Array after function ", this.curCarServiceArray);
+    },
+      (error) => console.log(error)
+    )
+  }
+
+  completeService(form) {
+    console.log("Button value is: ", form.value.curCarService);
+    var jsonString = form.value.curCarService;
+    var jsonServiceObj = JSON.parse(jsonString);
+    jsonServiceObj["newStatus"] = "complete";
+    console.log("JSON OBJ: ", jsonServiceObj);
+    this.dataService.updateServiceOrderService(this.orderId, jsonServiceObj)
     .subscribe(
       res => {
         this.serviceOrderService.serviceOrderInfo.next(this.orderId);

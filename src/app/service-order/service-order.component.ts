@@ -11,7 +11,7 @@ declare var $: any;
 export class ServiceOrderComponent implements OnInit {
     cusCarService = [];
     cusCarServiceOne = "";
-    cusCarServiceArray = [{type: "", price: "", desc: ""}];
+    cusCarServiceArray = [{type: "", price: "", desc: "", status:""}];
     count = 0;
   constructor(private dataService: DataService, private addServiceService: AddServiceService) { }
 
@@ -100,7 +100,7 @@ export class ServiceOrderComponent implements OnInit {
     for (var i = 0; i < this.cusCarServiceArray.length; i++) {
       var option = $("<option>");
       var serviceText = this.cusCarServiceArray[i];
-      var jsonValue = '{"type":"' + serviceText.type + '","price":"' + serviceText.price + '","desc":"' + serviceText.desc + '"}';
+      var jsonValue = '{"type":"' + serviceText.type + '","price":"' + serviceText.price + '","desc":"' + serviceText.desc + '","status":"pending"}';
       option.attr("value", jsonValue);
       option.text(serviceText.type);
       selectDiv.append(option);
