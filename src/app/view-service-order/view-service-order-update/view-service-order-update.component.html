@@ -26,3 +26,11 @@
   <textarea class="form-control" type="text" id="orderNotes" name="notes" ngModel required></textarea>
   <button [disabled]="!note.valid"  type="submit" class="btn btn-success">Add Note</button>
 </form>
+<h4 class="text-center">Update Services</h4>
+<form #serv="ngForm">
+  <label for="cusService">Current Services:</label>
+  <select type="text" id="curCarService" class="form-control" [(ngModel)]="curCarService" name="curCarService" required>
+    <option *ngFor="let service of curCarServiceArray; let i = index" value='{"type":"{{service.type}}","arrayIndex":{{i - 1}}}'>{{service.type}}</option>
+  </select>
+  <button [disabled]="!serv.valid" (click)="completeService(serv)"  type="button" class="btn btn-success">Complete Service</button><button [disabled]="!serv.valid" (click)="removeService()"  type="button" class="btn btn-danger">Remove Service</button>
+</form>

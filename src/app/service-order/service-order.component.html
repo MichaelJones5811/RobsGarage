@@ -21,7 +21,7 @@
         <input type="text" id="cusCarYear" class="form-control" ngModel name="cusCarYear" required>
         <label for="cusService">Service:</label>
         <select type="text" id="cusCarServiceOne" class="form-control" [(ngModel)]="cusCarServiceOne" name="cusCarServiceOne" required>
-          <option *ngFor="let service of cusCarServiceArray" value='{"type":"{{service.type}}","price":"{{service.price}}","desc":"{{service.desc}}"}'>{{service.type}}</option>
+          <option *ngFor="let service of cusCarServiceArray" value='{"type":"{{service.type}}","price":"{{service.price}}","desc":"{{service.desc}}","status":"pending"}'>{{service.type}}</option>
         </select>
         <button class="btn" type="button" (click)="addServiceField()">Add Service</button>
         <div id="appendItemDiv"></div>
