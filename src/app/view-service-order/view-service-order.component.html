@@ -2,55 +2,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class='text-center'>View Service Order</h2>
-      <h3>Customer Info</h3>
-      <h5>Name: {{orderInfo?.cusFirstName}} {{orderInfo?.cusLastName}}</h5>
-      <h5>Phone Number: {{orderInfo?.cusPhoneNumber}}</h5>
-      <h5>Email: {{orderInfo?.cusEmail}}</h5>
-      <h3>Order Info</h3>
-      <h5>Status: {{orderInfo?.status | uppercase}}</h5>
-      <h5>Make: {{orderInfo?.cusCarMake}}</h5>
-      <h5>Model: {{orderInfo?.cusCarModel}}</h5>
-      <h5>Year: {{orderInfo?.cusCarYear}}</h5>
-      <h5 *ngFor="let service of orderInfo?.cusCarService; let i = index">{{i + 1}}. Service: {{service.type}}</h5>
-      <h5>Attendant: {{orderInfo?.cusAttendant}}</h5>
-      <h5>Location: {{orderInfo?.location}}</h5>
-      <h5>Notes:</h5>
-      <ul>
-        <li *ngFor="let note of orderNotes">{{note}}</li>
-      </ul>
-      <h5>Created: {{orderInfo?.created_at | date:"medium"}}</h5>
-      <h5>Last Update: {{orderInfo?.updatedAt | date:"medium"}}</h5>
+      <app-view-service-order-info></app-view-service-order-info>
     </div>
     <div class="col-md-6">
       <h2 class="text-center">Update Service Order</h2>
-      <form (ngSubmit)="onSubmit(f);f.reset()" #f="ngForm">
-        <label for="cusAttendant">Attendant</label>
-        <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant">
-        <label for="status">Status</label>
-        <select type="text" id="status" class="form-control" ngModel name="status">
-         <option value=""></option>
-         <option value="pending">Pending</option>
-         <option value="in progress">In Progress</option>
-         <option value="waiting on parts">Waiting on Parts</option>
-         <option value= "waiting on customer">Waiting on Customer</option>
-         <option value="work complete">Work Completed</option>
-         <option value="closed">Closed</option>
-       </select>
-       <label for="location">Location</label>
-       <select type="text" id="status" class="form-control" ngModel name="location">
-        <option value=""></option>
-        <option value="Lot">Lot</option>
-        <option value="Bay-1">Bay 1</option>
-        <option value="Bay-2">Bay 2</option>
-        <option value="Bay-3">Bay 3</option>
-      </select>
-      <button type="submit" class="btn btn-primary">Update Order</button>
-      </form>
-      <h4 class='text-center'>Add a Note</h4>
-      <form (ngSubmit)="onNoteSubmit(note);note.reset()" #note="ngForm">
-        <textarea class="form-control" type="text" id="orderNotes" name="notes" ngModel required></textarea>
-        <button [disabled]="!note.valid"  type="submit" class="btn btn-success">Add Note</button>
-      </form>
+      <app-view-service-order-update></app-view-service-order-update>
     </div>
   </div>
 </div>

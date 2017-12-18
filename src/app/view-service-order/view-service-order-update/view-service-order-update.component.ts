@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceOrderService } from "../service-order.service";
-import { DataService } from "../data.service";
+import { ServiceOrderService } from "../../service-order.service";
+import { DataService } from "../../data.service";
 
 @Component({
-  selector: 'app-view-service-order',
-  templateUrl: './view-service-order.component.html',
-  styleUrls: ['./view-service-order.component.css']
+  selector: 'app-view-service-order-update',
+  templateUrl: './view-service-order-update.component.html',
+  styleUrls: ['./view-service-order-update.component.css']
 })
-export class ViewServiceOrderComponent implements OnInit {
+export class ViewServiceOrderUpdateComponent implements OnInit {
 
   constructor(private serviceOrderService: ServiceOrderService,
               private dataService: DataService) { }
+
   orderId = "";
-
-  orderInfo: any;
-
   orderNotes = [];
 
   ngOnInit() {
-
+    this.orderId = this.serviceOrderService.currentServiceOrderInfo();
   }
+
+
+
 
 
   onSubmit(form) {
@@ -39,7 +40,7 @@ export class ViewServiceOrderComponent implements OnInit {
     this.dataService.updateServiceOrder(this.orderId, form.value)
     .subscribe(
       res => {
-        // this.getOrderInfo(this.orderId);
+        this.serviceOrderService.serviceOrderInfo.next(this.orderId);
       }
     )
 
@@ -50,9 +51,8 @@ export class ViewServiceOrderComponent implements OnInit {
     this.dataService.addServiceOrderNote(this.orderId, form.value)
     .subscribe(
       res => {
-        // this.getOrderInfo(this.orderId);
+        this.serviceOrderService.serviceOrderInfo.next(this.orderId);
       }
     )
   }
-
 }
