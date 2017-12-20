@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceOrderService } from "../../service-order.service";
 import { DataService } from "../../data.service";
+import { AddServiceService } from "../../add-service.service";
 
 @Component({
   selector: 'app-view-service-order-update',
@@ -10,14 +11,17 @@ import { DataService } from "../../data.service";
 export class ViewServiceOrderUpdateComponent implements OnInit {
 
   constructor(private serviceOrderService: ServiceOrderService,
-              private dataService: DataService) { }
+              private dataService: DataService, private addServiceService: AddServiceService) { }
 
   orderId = "";
   orderNotes = [];
-  curCarServiceArray = [{type: "", price: "", desc: "", status:""}];
+  curCarServiceArray = [{type: "", price: "", desc: "", status: ""}];
+  allCarServiceArray = [{type: "", price: "", desc: "", status: ""}];
+  curAddServiceArray = [];
 
   ngOnInit() {
     this.orderId = this.serviceOrderService.currentServiceOrderInfo();
+    this.loadAllServices();
     this.getCurrentServices(this.orderId);
   }
 
@@ -72,6 +76,20 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
     )
   }
 
+  loadAllServices() {
+    this.addServiceService.getAllServices()
+    .subscribe(
+      (services: any[]) => {
+        console.log(services);
+        for (var i = 0; i < services.length; i++) {
+          this.allCarServiceArray.push(services[i]);
+        }
+        console.log(this.allCarServiceArray);
+      },
+      (error) => console.log(error)
+      );
+  }
+
   completeService(form) {
     console.log("Button value is: ", form.value.curCarService);
     var jsonString = form.value.curCarService;
@@ -84,5 +102,23 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
         this.serviceOrderService.serviceOrderInfo.next(this.orderId);
       }
     )
+  }
+
+  removeService(form) {
+    var jsonString = form.value.curCarService;
+    var jsonServiceObj = JSON.parse(jsonString);
+    console.log("JSON OBJ: ", jsonServiceObj);
+    this.dataService.removeServiceOrderService(this.orderId, jsonServiceObj)
+    .subscribe(
+      res => {
+        this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+      }
+    )
+  }
+
+  addToProposeServArray(form) {
+    var jsonString = form.value.newCarService;
+    var jsonServiceObj = JSON.parse(jsonString);
+    this.curAddServiceArray.push(jsonServiceObj);
   }
 }

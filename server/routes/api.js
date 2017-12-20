@@ -293,6 +293,21 @@ router.put("/updateservicestatus/:id", function(req, res) {
       res.json(successObj);
     });
 });
+
+// Remove Service form Service order
+router.put("/removeserviceorderservice/:id", function(req, res) {
+    ServiceOrder.update({"_id": req.params.id}, {"$pull": {"cusCarService": {type: req.body.type}}},function(err, data) {
+      if(err) {
+        console.log(err);
+        res.send(err);
+        return;
+      }
+      var successObj = {
+        "msg": "deleted"
+      };
+      res.json(successObj);
+    });
+});
 //Add Note to service order
 router.put("/addserviceordernote/:id", function(req, res) {
   var info = req.body;
