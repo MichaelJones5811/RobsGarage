@@ -1,5 +1,5 @@
 <div class="card viewServiceOrderStyle">
-  <h2 class="text-center">Update Services</h2>
+  <h2 class="text-center headerColor">Update Services</h2>
   <form #newserv="ngForm">
     <div class="form-group">
       <label for="newCarService">Recommend Service:</label>
@@ -16,7 +16,7 @@
     <div class="form-group">
       <label for="curCarService">Update Current Services:</label>
       <select type="text" id="curCarService" class="form-control" ngModel name="curCarService" required>
-        <option *ngFor="let service of curCarServiceArray" value='{"type":"{{service.type}}"}'>{{service.type}}</option>
+        <option *ngFor="let service of curCarServiceArray" value='{"type":"{{service.type}}"}'>{{service.type}} ({{service.status}})</option>
       </select>
       <button [disabled]="!serv.valid" (click)="completeService(serv); serv.reset()"  type="button" class="btn btn-success">Complete Service</button>
       <button [disabled]="!serv.valid" (click)="removeService(serv); serv.reset()"  type="button" class="btn btn-danger">Remove Service</button>
@@ -28,7 +28,7 @@
       <div class="form-group">
         <label for="recCarService">Update Recommended Services:</label>
         <select type="text" id="recCarService" class="form-control" ngModel name="recCarService" required>
-          <option *ngFor="let service of curAddServiceArray" value='{"type":"{{service.type}}","price":"{{service.price}}","desc":"{{service.desc}}","status":"recommended"}'>{{service.type}}- {{service.status}}</option>
+          <option *ngFor="let service of curAddServiceArray" value='{"type":"{{service.type}}","price":"{{service.price}}","desc":"{{service.desc}}","status":"recommended"}'>{{service.type}} ({{service.status}})</option>
         </select>
         <button [disabled]="!recserv.valid" (click)="approveRecServ(recserv); recserv.reset()" type="button" class="btn btn-info">Approve Service</button>
         <button [disabled]="!recserv.valid" (click)="declineRecServ(recserv); recserv.reset()" type="button" class="btn btn-warning">Decline Service</button>
@@ -40,9 +40,11 @@
 <hr>
   <form (ngSubmit)="onSubmit(f);f.reset()" #f="ngForm">
     <div class="form-group">
-      <h2 class="text-center">Update General Info</h2>
+      <h2 class="text-center headerColor">Update General Info</h2>
       <label for="cusAttendant">Attendant:</label>
-      <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant">
+      <select type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant" required>
+        <option *ngFor="let employee of allEmployeesArray" value="{{employee}}">{{employee}}</option>
+      </select>
       <label for="status">Status:</label>
       <select type="text" id="status" class="form-control" ngModel name="status">
        <option value=""></option>
@@ -54,7 +56,7 @@
        <option value="closed">Closed</option>
      </select>
      <label for="location">Location:</label>
-     <select type="text" id="status" class="form-control" ngModel name="location">
+     <select type="text" id="location" class="form-control" ngModel name="location">
       <option value=""></option>
       <option value="Lot">Lot</option>
       <option value="Bay-1">Bay 1</option>

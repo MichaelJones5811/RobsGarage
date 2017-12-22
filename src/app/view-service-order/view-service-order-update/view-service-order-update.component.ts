@@ -18,15 +18,16 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
   curCarServiceArray = [];
   allCarServiceArray = [];
   curAddServiceArray = [];
+  allEmployeesArray = [""];
+
   addErrMsg = "";
-  noteBtnText = "Add Note";
-  noteBtnBoolean = false;
 
   ngOnInit() {
     this.orderId = this.serviceOrderService.currentServiceOrderInfo();
     this.getCurrentServices(this.orderId);
     this.getCurrentRecServices(this.orderId);
     this.loadAllServices();
+    this.loadAllEmployees();
   }
 
 
@@ -114,6 +115,18 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
       );
   }
 
+  loadAllEmployees() {
+    this.dataService.getAllEmployees()
+    .subscribe(
+      res => {
+        console.log("Employees ", res);
+        for (var i = 0; i < res.length; i++) {
+          this.allEmployeesArray.push(res[i].employeeName);
+        }
+      }
+    )
+  }
+
   completeService(form) {
     console.log("Button value is: ", form.value.curCarService);
     var jsonString = form.value.curCarService;
@@ -124,6 +137,7 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
     .subscribe(
       res => {
         this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+        this.getCurrentServices(this.orderId);
       }
     )
   }
@@ -196,6 +210,7 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
     .subscribe(
       res => {
         this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+        this.getCurrentRecServices(this.orderId);
       }
     )
   }

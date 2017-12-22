@@ -37,7 +37,7 @@ const passport = require("passport");
       }
       });
 
-      // This will get all users in db
+      // check to see if there are any users in DB
       router.get("/allusers", function(req, res) {
         console.log("Got here");
         User.find().exec(function(error, users) {
@@ -45,7 +45,7 @@ const passport = require("passport");
           if (error) {
             console.log(error);
           }
-          // Or send the users to the browser as a json object
+
           else {
             retObj = {};
             console.log("Length ", users.length);
@@ -62,6 +62,29 @@ const passport = require("passport");
           }
         });
       });
+
+      // This will get all user names in db
+      router.get("/allemployees", function(req, res) {
+        console.log("Got here");
+        User.find().exec(function(error, users) {
+          // Log any errors
+          if (error) {
+            console.log(error);
+            res.json(error);
+          } else {
+            var employeeArr = [];
+            for (var i = 0; i < users.length; i++) {
+              var employeeObj = {
+                employeeName: users[i].local.first_name + " " + users[i].local.last_name
+              };
+              employeeArr.push(employeeObj);
+            }
+            res.json(employeeArr);
+          }
+        });
+      });
+
+
 
       //Customer Portal Routes
 

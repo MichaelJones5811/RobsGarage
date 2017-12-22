@@ -1,19 +1,19 @@
-
-  <h3><u>Customer Info</u></h3>
+  <h2 class='text-center headerColor'>View Service Order</h2>
+  <h3 class="headerColor"><u>Customer Info</u></h3>
   <h5>Name: {{orderInfo?.cusFirstName}} {{orderInfo?.cusLastName}}</h5>
   <h5>Phone Number: {{orderInfo?.cusPhoneNumber}}</h5>
   <h5>Email: {{orderInfo?.cusEmail}}</h5>
-  <h3><u>Current Services</u></h3>
+  <h3 class="headerColor"><u>Current Services</u></h3>
     <div *ngFor="let service of orderInfo?.cusCarService" >
       <h5><li *ngIf="service.status == 'pending' || service.status == 'complete'">{{service.status | uppercase}}: {{service.type}}</li></h5>
     </div>
   <div *ngIf="currentServiceArr.length > 0">
-    <h3><u>Recommended Services</u></h3>
+    <h3 class="headerColor"><u>Recommended Services</u></h3>
     <div *ngFor="let service of orderInfo?.cusCarService" >
       <h5><li *ngIf="service.status == 'recommended' || service.status == 'declined'">{{service.status | uppercase}}: {{service.type}}</li></h5>
     </div>
   </div>
-  <h3><u>General Info</u></h3>
+  <h3 class="headerColor"><u>General Info</u></h3>
   <h5>Status: {{orderInfo?.status | uppercase}}</h5>
   <h5>Make: {{orderInfo?.cusCarMake}}</h5>
   <h5>Model: {{orderInfo?.cusCarModel}}</h5>
