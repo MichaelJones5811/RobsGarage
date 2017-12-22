@@ -182,6 +182,16 @@ export class DataService {
       );
   }
 
+  getAllEmployees() {
+    return this._http.get("/auth/allemployees")
+      .map(
+      (response: Response) => {
+        this.result = response.json();
+        return response.json();
+      }
+      );
+  }
+
   //Customer Portal Routes
 
   //Create customer user account
