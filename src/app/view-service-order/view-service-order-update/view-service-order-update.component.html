@@ -1,46 +1,76 @@
-<form (ngSubmit)="onSubmit(f);f.reset()" #f="ngForm">
-  <label for="cusAttendant">Attendant</label>
-  <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant">
-  <label for="status">Status</label>
-  <select type="text" id="status" class="form-control" ngModel name="status">
-   <option value=""></option>
-   <option value="pending">Pending</option>
-   <option value="in progress">In Progress</option>
-   <option value="waiting on parts">Waiting on Parts</option>
-   <option value= "waiting on customer">Waiting on Customer</option>
-   <option value="work complete">Work Completed</option>
-   <option value="closed">Closed</option>
- </select>
- <label for="location">Location</label>
- <select type="text" id="status" class="form-control" ngModel name="location">
-  <option value=""></option>
-  <option value="Lot">Lot</option>
-  <option value="Bay-1">Bay 1</option>
-  <option value="Bay-2">Bay 2</option>
-  <option value="Bay-3">Bay 3</option>
-</select>
-<button type="submit" class="btn btn-primary">Update Order</button>
-</form>
-<h4 class='text-center'>Add a Note</h4>
-<form (ngSubmit)="onNoteSubmit(note);note.reset()" #note="ngForm">
-  <textarea class="form-control" type="text" id="orderNotes" name="notes" ngModel required></textarea>
-  <button [disabled]="!note.valid"  type="submit" class="btn btn-success">Add Note</button>
-</form>
-<h4 class="text-center">Update Services</h4>
-<form #serv="ngForm">
-  <label for="curCarService">Current Services:</label>
-  <select type="text" id="curCarService" class="form-control" ngModel name="curCarService" required>
-    <option *ngFor="let service of curCarServiceArray" value='{"type":"{{service.type}}"}'>{{service.type}}</option>
-  </select>
-  <button [disabled]="!serv.valid" (click)="completeService(serv); serv.reset()"  type="button" class="btn btn-success">Complete Service</button><button [disabled]="!serv.valid" (click)="removeService(serv); serv(reset)"  type="button" class="btn btn-danger">Remove Service</button>
-</form>
-<form #newserv="ngForm">
-  <label for="newCarService">Add Services:</label>
-  <select type="text" id="newCarService" class="form-control" ngModel name="newCarService" required>
-    <option *ngFor="let service of allCarServiceArray" value='{"type":"{{service.type}}","price":"{{service.price}}","desc":"{{service.desc}}","status":"propose"}'>{{service.type}}</option>
-  </select>
-  <button [disabled]="!newserv.valid" (click)="addToProposeServArray(newserv); newserv.reset()"  type="button" class="btn btn-dark">Enter</button>
+<div class="card viewServiceOrderStyle">
+  <h2 class="text-center">Update Services</h2>
+  <form #newserv="ngForm">
+    <div class="form-group">
+      <label for="newCarService">Recommend Service:</label>
+      <select type="text" id="newCarService" class="form-control" ngModel name="newCarService" required>
+        <option *ngFor="let service of allCarServiceArray" value='{"type":"{{service.type}}","price":"{{service.price}}","desc":"{{service.desc}}","status":"recommended"}'>{{service.type}}</option>
+      </select>
+      <button [disabled]="!newserv.valid" (click)="addToProposeServArray(newserv); newserv.reset()"  type="button" class="btn btn-dark">Enter</button>
+      <div *ngIf = "addErrMsg != ''" class="alert alert-danger">
+        <p>{{addErrMsg}}</p>
+      </div>
+    </div>
+  </form>
+  <form #serv="ngForm">
+    <div class="form-group">
+      <label for="curCarService">Update Current Services:</label>
+      <select type="text" id="curCarService" class="form-control" ngModel name="curCarService" required>
+        <option *ngFor="let service of curCarServiceArray" value='{"type":"{{service.type}}"}'>{{service.type}}</option>
+      </select>
+      <button [disabled]="!serv.valid" (click)="completeService(serv); serv.reset()"  type="button" class="btn btn-success">Complete Service</button>
+      <button [disabled]="!serv.valid" (click)="removeService(serv); serv.reset()"  type="button" class="btn btn-danger">Remove Service</button>
+    </div>
+  </form>
+
   <div *ngIf="curAddServiceArray.length > 0">
-    <h1>Entered!</h1>
+    <form #recserv="ngForm">
+      <div class="form-group">
+        <label for="recCarService">Update Recommended Services:</label>
+        <select type="text" id="recCarService" class="form-control" ngModel name="recCarService" required>
+          <option *ngFor="let service of curAddServiceArray" value='{"type":"{{service.type}}","price":"{{service.price}}","desc":"{{service.desc}}","status":"recommended"}'>{{service.type}}- {{service.status}}</option>
+        </select>
+        <button [disabled]="!recserv.valid" (click)="approveRecServ(recserv); recserv.reset()" type="button" class="btn btn-info">Approve Service</button>
+        <button [disabled]="!recserv.valid" (click)="declineRecServ(recserv); recserv.reset()" type="button" class="btn btn-warning">Decline Service</button>
+        <button [disabled]="!recserv.valid" (click)="removeRecService(recserv); recserv.reset()" type="button" class="btn btn-danger">Remove Service</button>
+      </div>
+    </form>
+  </div>
+
+<hr>
+  <form (ngSubmit)="onSubmit(f);f.reset()" #f="ngForm">
+    <div class="form-group">
+      <h2 class="text-center">Update General Info</h2>
+      <label for="cusAttendant">Attendant:</label>
+      <input type="text" id="cusAttendant" class="form-control" ngModel name="cusAttendant">
+      <label for="status">Status:</label>
+      <select type="text" id="status" class="form-control" ngModel name="status">
+       <option value=""></option>
+       <option value="pending">Pending</option>
+       <option value="in progress">In Progress</option>
+       <option value="waiting on parts">Waiting on Parts</option>
+       <option value= "waiting on customer">Waiting on Customer</option>
+       <option value="work complete">Work Completed</option>
+       <option value="closed">Closed</option>
+     </select>
+     <label for="location">Location:</label>
+     <select type="text" id="status" class="form-control" ngModel name="location">
+      <option value=""></option>
+      <option value="Lot">Lot</option>
+      <option value="Bay-1">Bay 1</option>
+      <option value="Bay-2">Bay 2</option>
+      <option value="Bay-3">Bay 3</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Update Order</button>
   </div>
 </form>
+
+<form (ngSubmit)="onNoteSubmit(note);note.reset()" #note="ngForm">
+  <div class="form-group">
+    <label for="orderNotes">Add Notes:</label>
+    <textarea class="form-control" type="text" id="orderNotes" name="notes" ngModel required></textarea>
+    <button [disabled]="!note.valid"  type="submit" class="btn btn-success">Add Note</button>
+  </div>
+</form>
+
+</div>

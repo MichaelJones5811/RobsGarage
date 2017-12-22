@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ServiceOrderService } from "../../service-order.service";
 import { DataService } from "../../data.service";
 import { AddServiceService } from "../../add-service.service";
@@ -15,14 +15,18 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
 
   orderId = "";
   orderNotes = [];
-  curCarServiceArray = [{type: "", price: "", desc: "", status: ""}];
-  allCarServiceArray = [{type: "", price: "", desc: "", status: ""}];
+  curCarServiceArray = [];
+  allCarServiceArray = [];
   curAddServiceArray = [];
+  addErrMsg = "";
+  noteBtnText = "Add Note";
+  noteBtnBoolean = false;
 
   ngOnInit() {
     this.orderId = this.serviceOrderService.currentServiceOrderInfo();
-    this.loadAllServices();
     this.getCurrentServices(this.orderId);
+    this.getCurrentRecServices(this.orderId);
+    this.loadAllServices();
   }
 
 
@@ -67,8 +71,11 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
     .subscribe(
       (response) => {
         console.log("Array for services: ", response[0]);
+        this.curCarServiceArray = [];
         for (var i = 0; i < response[0].cusCarService.length; i++) {
-          this.curCarServiceArray.push(response[0].cusCarService[i]);
+          if(response[0].cusCarService[i].status == "pending" || response[0].cusCarService[i].status == "complete") {
+            this.curCarServiceArray.push(response[0].cusCarService[i]);
+          }
         }
         console.log("Array after function ", this.curCarServiceArray);
     },
@@ -76,15 +83,32 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
     )
   }
 
+  getCurrentRecServices(value) {
+    this.curAddServiceArray = [];
+    this.dataService.getServiceOrder(this.orderId)
+    .subscribe(
+      (response) => {
+        console.log("Array for services: ", response[0]);
+        for (var i = 0; i < response[0].cusCarService.length; i++) {
+          if(response[0].cusCarService[i].status == "recommended" || response[0].cusCarService[i].status == "declined") {
+            this.curAddServiceArray.push(response[0].cusCarService[i]);
+          }
+        }
+    },
+      (error) => console.log(error)
+    )
+  }
+
   loadAllServices() {
+    this.allCarServiceArray = [];
     this.addServiceService.getAllServices()
     .subscribe(
       (services: any[]) => {
-        console.log(services);
         for (var i = 0; i < services.length; i++) {
           this.allCarServiceArray.push(services[i]);
         }
         console.log(this.allCarServiceArray);
+
       },
       (error) => console.log(error)
       );
@@ -112,13 +136,81 @@ export class ViewServiceOrderUpdateComponent implements OnInit {
     .subscribe(
       res => {
         this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+        this.getCurrentServices(this.orderId);
       }
     )
   }
 
   addToProposeServArray(form) {
+    this.addErrMsg = "";
     var jsonString = form.value.newCarService;
     var jsonServiceObj = JSON.parse(jsonString);
-    this.curAddServiceArray.push(jsonServiceObj);
+    for (var i = 0; i < this.curCarServiceArray.length; i++) {
+      if (jsonServiceObj.type === this.curCarServiceArray[i].type) {
+        this.addErrMsg = jsonServiceObj.type + " is already a current service";
+        return;
+      }
+    }
+    for (var i = 0; i < this.curAddServiceArray.length; i++) {
+      if (jsonServiceObj.type === this.curAddServiceArray[i].type) {
+        this.addErrMsg = jsonServiceObj.type + " is already a recommended service";
+        return;
+      }
+    }
+    var addServiceObj = {
+      cusCarService: jsonServiceObj
+    };
+    this.dataService.addServiceOrderService(this.orderId, addServiceObj)
+    .subscribe(
+      res => {
+        console.log("the response object is", res);
+        this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+        this.getCurrentRecServices(this.orderId);
+
+      }
+    )
   }
+
+  approveRecServ(form) {
+    var jsonString = form.value.recCarService;
+    console.log("json String: ", jsonString);
+    var jsonServiceObj = JSON.parse(jsonString);
+    jsonServiceObj["newStatus"] = "pending";
+    console.log("JSON OBJ: ", jsonServiceObj);
+    this.dataService.updateServiceOrderService(this.orderId, jsonServiceObj)
+    .subscribe(
+      res => {
+        this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+        this.getCurrentServices(this.orderId);
+        this.getCurrentRecServices(this.orderId);
+      }
+    )
+  }
+
+  declineRecServ(form) {
+    var jsonString = form.value.recCarService;
+    var jsonServiceObj = JSON.parse(jsonString);
+    jsonServiceObj["newStatus"] = "declined";
+    console.log("JSON OBJ: ", jsonServiceObj);
+    this.dataService.updateServiceOrderService(this.orderId, jsonServiceObj)
+    .subscribe(
+      res => {
+        this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+      }
+    )
+  }
+
+  removeRecService(form) {
+    var jsonString = form.value.recCarService;
+    var jsonServiceObj = JSON.parse(jsonString);
+    console.log("JSON OBJ: ", jsonServiceObj);
+    this.dataService.removeServiceOrderService(this.orderId, jsonServiceObj)
+    .subscribe(
+      res => {
+        this.serviceOrderService.serviceOrderInfo.next(this.orderId);
+        this.getCurrentRecServices(this.orderId);
+      }
+    )
+  }
+
 }

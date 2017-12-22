@@ -135,6 +135,17 @@ export class DataService {
       });
   }
 
+  addServiceOrderService(id, post) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this._http.put("/api/addserviceorderservice/" + id, JSON.stringify(post), options)
+      .map(result => {
+        this.result = result.json();
+        return result.json();
+      });
+  }
+
   signUpUser(post) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
