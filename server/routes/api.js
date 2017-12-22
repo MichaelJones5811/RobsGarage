@@ -234,6 +234,19 @@ router.get("/allserviceorders", function(req, res) {
     });
 
     //Add Note to service order
+    router.put("/addserviceorderservice/:id", function(req, res) {
+      var info = req.body;
+      console.log("here is the info");
+      console.log(info);
+      ServiceOrder.findByIdAndUpdate(req.params.id, {$push: info}, function(err, order) {
+        if (err) return handleError(err);
+        console.log("sending back order");
+        res.send(order);
+      });
+    });
+
+
+    //Add Note to service order
     router.put("/addserviceordernote/:id", function(req, res) {
       var info = req.body;
       console.log("here is the info");
@@ -289,6 +302,21 @@ router.put("/updateservicestatus/:id", function(req, res) {
       }
       var successObj = {
         "msg": "updated"
+      };
+      res.json(successObj);
+    });
+});
+
+// Remove Service form Service order
+router.put("/removeserviceorderservice/:id", function(req, res) {
+    ServiceOrder.update({"_id": req.params.id}, {"$pull": {"cusCarService": {type: req.body.type}}},function(err, data) {
+      if(err) {
+        console.log(err);
+        res.send(err);
+        return;
+      }
+      var successObj = {
+        "msg": "deleted"
       };
       res.json(successObj);
     });
