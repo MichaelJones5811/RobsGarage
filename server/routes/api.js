@@ -222,6 +222,28 @@ router.get("/allserviceorders", function(req, res) {
       });
     });
 
+    // Grab a service order by customer email
+    router.get("/allserviceorders/:id", function(req, res) {
+      console.log("Got here");
+      // Using the phone number passed in the id parameter
+      ServiceOrder.find({ "cusEmail": req.params.id })
+      // ..and populate all of the customer associated with it
+      // now, execute our query
+      .exec(function(error, orders) {
+        // Log any errors
+        if (error) {
+          console.log(error);
+        }
+        // Otherwise, send the customer to the browser as a json object
+        else {
+          console.log("Got Here Also");
+          console.log(orders);
+          res.json(orders);
+
+        }
+      });
+    });
+
     //Update service order info
     router.put("/updateserviceorder/:id", function(req, res) {
       var info = req.body;

@@ -25,9 +25,17 @@ module.exports = function(passport) {
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
+          console.log("USER INFO IS: ", user);
+          if(user == null) {
+            CustomerUser.findById(id, function(errr, cususer) {
+              done(errr, cususer);
+            });
+            return;
+          }
             done(err, user);
         });
     });
+
 
     // =========================================================================
     // LOCAL SIGNUP ============================================================

@@ -12,17 +12,6 @@
       </div>
     </div>
   </form>
-  <form #serv="ngForm">
-    <div class="form-group">
-      <label for="curCarService">Update Current Services:</label>
-      <select type="text" id="curCarService" class="form-control" ngModel name="curCarService" required>
-        <option *ngFor="let service of curCarServiceArray" value='{"type":"{{service.type}}"}'>{{service.type}} ({{service.status}})</option>
-      </select>
-      <button [disabled]="!serv.valid" (click)="completeService(serv); serv.reset()"  type="button" class="btn btn-success">Complete Service</button>
-      <button [disabled]="!serv.valid" (click)="removeService(serv); serv.reset()"  type="button" class="btn btn-danger">Remove Service</button>
-    </div>
-  </form>
-
   <div *ngIf="curAddServiceArray.length > 0">
     <form #recserv="ngForm">
       <div class="form-group">
@@ -36,6 +25,16 @@
       </div>
     </form>
   </div>
+  <form #serv="ngForm">
+    <div class="form-group">
+      <label for="curCarService">Update Current Services:</label>
+      <select type="text" id="curCarService" class="form-control" ngModel name="curCarService" required>
+        <option *ngFor="let service of curCarServiceArray" value='{"type":"{{service.type}}"}'>{{service.type}} ({{service.status}})</option>
+      </select>
+      <button [disabled]="!serv.valid" (click)="completeService(serv); serv.reset()"  type="button" class="btn btn-success">Complete Service</button>
+      <button [disabled]="!serv.valid" (click)="removeService(serv); serv.reset()"  type="button" class="btn btn-danger">Remove Service</button>
+    </div>
+  </form>
 
 <hr>
   <form (ngSubmit)="onSubmit(f);f.reset()" #f="ngForm">

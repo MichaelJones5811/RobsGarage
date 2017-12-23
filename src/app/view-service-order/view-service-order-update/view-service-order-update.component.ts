@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceOrderService } from "../../service-order.service";
 import { DataService } from "../../data.service";
 import { AddServiceService } from "../../add-service.service";

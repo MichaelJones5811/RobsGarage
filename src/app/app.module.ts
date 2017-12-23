@@ -32,6 +32,7 @@ import { CustomerSignInComponent } from './customer-sign-in/customer-sign-in.com
 import { CustomerPortalComponent } from './customer-portal/customer-portal.component';
 import { ViewServiceOrderUpdateComponent } from './view-service-order/view-service-order-update/view-service-order-update.component';
 import { ViewServiceOrderInfoComponent } from './view-service-order/view-service-order-info/view-service-order-info.component';
+import { CustomerPendingWorkComponent } from './customer-pending-work/customer-pending-work.component';
 
 
 
@@ -74,6 +75,9 @@ import { ViewServiceOrderInfoComponent } from './view-service-order/view-service
 
 
     ViewServiceOrderInfoComponent,
+
+
+    CustomerPendingWorkComponent,
 
 
 
