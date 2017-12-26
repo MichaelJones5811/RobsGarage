@@ -208,6 +208,16 @@ export class DataService {
     return this._http.post("/auth/logincustomer", JSON.stringify(post), options);
   }
 
+  getCustomerServiceOrder(id) {
+    return this._http.get("/api/allcustomerserviceorders/" + id)
+      .map(
+      (response: Response) => {
+        this.result = response.json();
+        return response.json();
+      }
+      );
+  }
+
 
 
 }
