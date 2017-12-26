@@ -223,7 +223,7 @@ router.get("/allserviceorders", function(req, res) {
     });
 
     // Grab a service order by customer email
-    router.get("/allserviceorders/:id", function(req, res) {
+    router.get("/allcustomerserviceorders/:id", function(req, res) {
       console.log("Got here");
       // Using the phone number passed in the id parameter
       ServiceOrder.find({ "cusEmail": req.params.id })

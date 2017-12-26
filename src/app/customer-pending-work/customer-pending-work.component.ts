@@ -10,19 +10,27 @@ import { DataService } from "../data.service";
 export class CustomerPendingWorkComponent implements OnInit {
 
   constructor(private dataService: DataService, private addServiceService: AddServiceService) { }
+  currentUser = {};
+  currentServices = [];
+
 
   ngOnInit() {
     this.dataService.getUserInfo().subscribe(
       (user) => {
           console.log(user);
+          this.currentUser = user.local;
+          console.log("EMAIL ", user.local.email);
+          this.getCustomerOrders(user.local.email);
       }
     );
   }
 
   getCustomerOrders(email) {
-    this.dataService.getServiceOrder(email).subscribe(
+    this.dataService.getCustomerServiceOrder(email).subscribe(
       (orders) => {
-        console.log(orders);
+        console.log("ORDERS ARE: ", orders);
+        this.currentServices = orders;
+        console.log(this.currentServices);
       }
     )
   }
