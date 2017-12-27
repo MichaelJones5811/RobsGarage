@@ -1,0 +1,55 @@
+.viewCustomerOrderStyle {
+  background: rgb(245,245,245);
+  padding: 10px;
+  margin-top: 15px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+.headerColor {
+  color: rgb(0,62,83);
+}
+.greenColor {
+  color: green;
+}
+
+.yellowColor {
+  color: rgb(228,188,54);
+}
+
+.blueColor {
+  color: blue;
+}
+
+.redColor {
+  color: rgb(186,0,1);
+}
+
+.infoColor {
+  color: rgb(101,191,206);
+}
+
+
+.pendingColor {
+  color: rgb(0,23,164);
+}
+
+.inProgressColor {
+  color: rgb(255,102,2);
+}
+
+.partsColor {
+  color: rgb(196,0,123);
+}
+
+.customerColor {
+  color: rgb(255,0,2);
+}
+
+.workCompletedColor {
+  color: rgb(22,172,2);
+}
+.closedColor{
+  color: rgb(99,0,164);
+}

@@ -53,7 +53,7 @@ export class ServiceOrderComponent implements OnInit {
       }
     }
 
-    form.value.status = "Pending";
+    form.value.status = "pending";
     form.value.location = "Lot";
     form.value.cusCarService = this.cusCarService;
     this.dataService.postServiceOrder(form.value)

@@ -14,6 +14,7 @@ import { SelectCustomerComponent } from './select-customer/select-customer.compo
 import { CustomerService } from './customer.service';
 import { ServiceDashboardComponent } from './service-dashboard/service-dashboard.component';
 import { ServiceOrderService } from './service-order.service';
+import { CustomerServiceOrderService } from './customer-service-order.service';
 import { ViewServiceOrderComponent } from './view-service-order/view-service-order.component';
 import { routes } from './app.routing';
 import { AddServiceComponent } from './add-service/add-service.component';
@@ -33,6 +34,7 @@ import { CustomerPortalComponent } from './customer-portal/customer-portal.compo
 import { ViewServiceOrderUpdateComponent } from './view-service-order/view-service-order-update/view-service-order-update.component';
 import { ViewServiceOrderInfoComponent } from './view-service-order/view-service-order-info/view-service-order-info.component';
 import { CustomerPendingWorkComponent } from './customer-pending-work/customer-pending-work.component';
+import { ViewCustomerServiceOrderComponent } from './view-customer-service-order/view-customer-service-order.component';
 
 
 
@@ -80,6 +82,9 @@ import { CustomerPendingWorkComponent } from './customer-pending-work/customer-p
     CustomerPendingWorkComponent,
 
 
+    ViewCustomerServiceOrderComponent,
+
+
 
 
   ],
@@ -90,7 +95,7 @@ import { CustomerPendingWorkComponent } from './customer-pending-work/customer-p
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [DataService, CustomerService, ServiceOrderService,AddServiceService, AuthService, AuthGuard, AdminGuard, AddGuard],
+  providers: [DataService, CustomerService, ServiceOrderService, CustomerServiceOrderService, AddServiceService, AuthService, AuthGuard, AdminGuard, AddGuard],
   bootstrap: [AppComponent]
 })
 
