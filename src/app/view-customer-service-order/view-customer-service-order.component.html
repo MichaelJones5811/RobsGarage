@@ -1,0 +1,51 @@
+<div class="card viewCustomerOrderStyle">
+  <h2 class='text-center headerColor'>View Service Order</h2>
+  <hr>
+  <div *ngIf="orderInfo?.status =='pending'">
+    <h3 class="text-center pendingColor">STATUS: {{orderInfo?.status |uppercase}}</h3>
+  </div>
+  <div *ngIf="orderInfo?.status =='in progress'">
+    <h3 class="text-center inProgressColor">STATUS: {{orderInfo?.status |uppercase}}</h3>
+  </div>
+  <div *ngIf="orderInfo?.status =='waiting on parts'">
+    <h3 class="text-center partsColor">STATUS: {{orderInfo?.status |uppercase}}</h3>
+  </div>
+  <div *ngIf="orderInfo?.status =='waiting on customer'">
+    <h3 class="text-center customerColor">STATUS: {{orderInfo?.status |uppercase}}</h3>
+  </div>
+  <div *ngIf="orderInfo?.status =='work complete'">
+    <h3 class="text-center workCompletedColor">STATUS: {{orderInfo?.status |uppercase}}</h3>
+  </div>
+  <div *ngIf="orderInfo?.status =='closed'">
+    <h3 class="text-center closedColor">STATUS: {{orderInfo?.status |uppercase}}</h3>
+  </div>
+  <hr>
+  <div class="text-center">
+    <h3 class="headerColor"><u>General Info</u></h3>
+    <h5>Make: {{orderInfo?.cusCarMake}}</h5>
+    <h5>Model: {{orderInfo?.cusCarModel}}</h5>
+    <h5>Year: {{orderInfo?.cusCarYear}}</h5>
+    <h5>Attendant: {{orderInfo?.cusAttendant}}</h5>
+    <h5>Location: {{orderInfo?.location}}</h5>
+    <h5>Created: {{orderInfo?.created_at | date:"medium"}}</h5>
+    <h5>Last Update: {{orderInfo?.updatedAt | date:"medium"}}</h5>
+  </div>
+  <hr>
+  <div class="text-center">
+    <h3 class="headerColor"><u>Current Services</u></h3>
+      <div *ngFor="let service of orderInfo?.cusCarService" >
+        <h5 class="greenColor"><li *ngIf="service.status == 'complete'">{{service.status | uppercase}}: {{service.type}}</li></h5>
+        <h5 class="blueColor"><li *ngIf="service.status == 'pending'">{{service.status | uppercase}}: {{service.type}}</li></h5>
+      </div>
+  </div>
+  <div *ngIf="currentServiceArr.length > 0">
+    <hr>
+    <div class="text-center">
+      <h3 class="headerColor"><u>Recommended Services</u></h3>
+      <div *ngFor="let service of orderInfo?.cusCarService" >
+        <h5 class="yellowColor"><li *ngIf="service.status == 'declined'">{{service.status | uppercase}}: {{service.type}}</li></h5>
+        <h5 class="infoColor"><li *ngIf="service.status == 'recommended'">{{service.status | uppercase}}: {{service.type}}</li></h5>
+      </div>
+    </div>
+  </div>
+</div>

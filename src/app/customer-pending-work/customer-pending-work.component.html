@@ -6,30 +6,28 @@
       <th>Status</th>
       <th>Vehicle</th>
       <th>Location</th>
-      <th>Services</th>
+      <th>Ordered</th>
       <th>Recommended</th>
       <th>Created</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let order of currentServices" style="cursor: pointer;">
-      <!-- <div *ngIf="order.status != 'closed'"> -->
-        <td>{{order.cusAttendant}}</td>
-        <td>{{order.status | uppercase}}</td>
-        <td>{{order.cusCarMake}} {{order.cusCarModel}}, {{order.cusCarYear}}</td>
-        <td>{{order.location}}</td>
-        <td>
-          <div *ngFor="let service of order.cusCarService">
-            <div *ngIf="service.status == 'pending' || service.status == 'complete'">{{service.type}}</div>
-          </div>
-        </td>
-        <td>
-          <div *ngFor="let recService of order.cusCarService">
-            <div *ngIf="recService.status == 'recommended'">{{recService.type}}</div>
-          </div>
-        </td>
-        <td>{{order.created_at | date:"medium"}}</td>
-      <!-- </div> -->
+    <tr *ngFor="let order of pendingServices" (click)="selectOrder(order._id)" style="cursor: pointer;">
+      <td>{{order.cusAttendant}}</td>
+      <td>{{order.status | uppercase}}</td>
+      <td>{{order.cusCarMake}} {{order.cusCarModel}}, {{order.cusCarYear}}</td>
+      <td>{{order.location}}</td>
+      <td>
+        <div *ngFor="let service of order.cusCarService">
+          <div *ngIf="service.status == 'pending' || service.status == 'complete'">{{service.type}}</div>
+        </div>
+      </td>
+      <td>
+        <div *ngFor="let recService of order.cusCarService">
+          <div *ngIf="recService.status == 'recommended'">{{recService.type}}</div>
+        </div>
+      </td>
+      <td>{{order.created_at | date:"medium"}}</td>
     </tr>
   </tbody>
 </table>

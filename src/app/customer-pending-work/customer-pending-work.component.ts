@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AddServiceService } from "../add-service.service";
 import { DataService } from "../data.service";
+import { Router } from "@angular/router";
+import { CustomerServiceOrderService } from "../customer-service-order.service";
 
 @Component({
   selector: 'app-customer-pending-work',
@@ -9,9 +11,13 @@ import { DataService } from "../data.service";
 })
 export class CustomerPendingWorkComponent implements OnInit {
 
-  constructor(private dataService: DataService, private addServiceService: AddServiceService) { }
+  constructor(private dataService: DataService,
+              private addServiceService: AddServiceService,
+              private router: Router,
+              private customerServiceOrderService: CustomerServiceOrderService) { }
   currentUser = {};
   currentServices = [];
+  pendingServices = [];
 
 
   ngOnInit() {
@@ -30,9 +36,19 @@ export class CustomerPendingWorkComponent implements OnInit {
       (orders) => {
         console.log("ORDERS ARE: ", orders);
         this.currentServices = orders;
+        for (var i = 0; i < orders.length; i++) {
+          if(orders[i].status != "closed") {
+            this.pendingServices.push(orders[i]);
+          }
+        }
         console.log(this.currentServices);
       }
     )
   }
+
+  selectOrder(value) {
+    this.customerServiceOrderService.updateCurrentOrder(value);
+    this.router.navigate(["/viewcustomerserviceorder"]);
+}
 
 }

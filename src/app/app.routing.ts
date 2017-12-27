@@ -23,6 +23,7 @@ import { AddServiceComponent } from './add-service/add-service.component';
 import { UserSignupComponent } from './user-signup/user-signup.component';
 import { CustomerLandingPageComponent} from"./customer-landing-page/customer-landing-page.component";
 import { CustomerPortalComponent} from"./customer-portal/customer-portal.component";
+import { ViewCustomerServiceOrderComponent } from './view-customer-service-order/view-customer-service-order.component';
 import { AuthGuard } from "./auth-guard.service";
 import { AdminGuard } from "./admin-guard.service";
 import { AddGuard } from "./add-guard.service";
@@ -91,6 +92,10 @@ export const routes: Routes = [
   {
     path: 'customerportal',
     component: CustomerPortalComponent
+  },
+  {
+    path: 'viewcustomerserviceorder',
+    component: ViewCustomerServiceOrderComponent
   },
   {
     path: 'landingpage',
